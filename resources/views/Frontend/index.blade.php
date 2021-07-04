@@ -2,6 +2,7 @@
 
 @section('title', '| home')
 @section('content')
+    @include('Frontend.template.partials.welcome')
     <!-- Shop Catagory Area -->
     @include('Frontend.template.partials.category')
     <!-- Shop Catagory Area -->

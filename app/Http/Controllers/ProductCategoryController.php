@@ -50,7 +50,7 @@ class ProductCategoryController extends Controller
 
         $route = 'product-category';
   if ($request->ajax()){
-      $view = view('frontend.singlepage', compact('products'))->render();
+      $view = view('Frontend.productdetail', compact('products'))->render();
       return  response()->json(['html'=>$view]);
   }
 

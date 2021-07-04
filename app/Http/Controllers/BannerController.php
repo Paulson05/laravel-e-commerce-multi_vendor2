@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class BannerController extends Controller
 {
@@ -45,25 +47,39 @@ class BannerController extends Controller
             'title' => 'string|required',
             'slug'=> 'string|required',
             'description'=> 'string|nullable',
+            'conditions'=>'nullable|in:banner, promo',
             'photo'=> 'required',
             'status'=>'nullable|in:active, inactive',
 
+        ]);
 
-            ]);
-        if ( $request->hasfile('photo')){
-            $file  =$request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $filename =    time() . '.' .$extension;
-            $file->move('upload/photos', $filename);
-
+        $data= $request->all();
+        $slug=Str::slug($request->input('title'));
+        $slug_count=Banner::where('slug', $slug)->count();
+        if ($slug_count>0){
+            $slug = time(). '_'.$slug;
         }
-        else {
-            $filename='';
+        $status=Banner::create($data);
+        if ($status){
+            return redirect()->route('banner.index');
         }
-        $banner = Banner::create(collect($request->only(['title','slug','description','status','conditions']))->put('photo',$filename)->all());
-        $banner->save();
-
-        return redirect()->back();
+        else{
+            return redirect()->back();
+        }
+//        if ( $request->hasfile('photo')){
+//            $file  =$request->file('photo');
+//            $extension = $file->getClientOriginalExtension();
+//            $filename =    time() . '.' .$extension;
+//            $file->move('upload/photos', $filename);
+//
+//        }
+//        else {
+//            $filename='';
+//        }
+//        $banner = Banner::create(collect($request->only(['title','slug','description','status','conditions']))->put('photo',$filename)->all());
+//        $banner->save();
+//
+//        return redirect()->back();
     }
 
     /**

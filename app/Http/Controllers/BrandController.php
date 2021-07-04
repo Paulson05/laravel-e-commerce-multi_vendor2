@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BrandController extends Controller
 {
@@ -46,20 +48,20 @@ class BrandController extends Controller
             'status'=> 'required',
 
         ]);
-        if ( $request->hasfile('photo')){
-            $file  =$request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $filename =    time() . '.' .$extension;
-            $file->move('upload/photos', $filename);
-
+        $data= $request->all();
+        $slug=Str::slug($request->input('title'));
+        $slug_count=Brand::where('slug', $slug)->count();
+        if ($slug_count>0){
+            $slug = time(). '_'.$slug;
         }
-        else {
-            $filename='';
+        $status=Brand::create($data);
+        if ($status){
+            return redirect()->route('brand.index');
         }
-        $banner = Brand::create(collect($request->only(['title','slug','status']))->put('photo',$filename)->all());
-        $banner->save();
+        else{
+            return redirect()->back();
+        }
 
-        return redirect()->back();
     }
 
     /**

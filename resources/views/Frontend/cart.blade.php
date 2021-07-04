@@ -4,44 +4,31 @@
     <!-- Cart Dropdown Content -->
     <div class="cart-dropdown-content">
         <ul class="cart-list">
+            @foreach(\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->content() as $item)
             <li>
                 <div class="cart-item-desc">
                     <a href="#" class="image">
-                        <img src="img/product-img/top-1.png" class="cart-thumb" alt="">
+                        <img src="{{$item->photo}}" class="cart-thumb" alt="">
                     </a>
                     <div>
-                        <a href="#">Kid's Fashion</a>
-                        <p>1 x - <span class="price">$32.99</span></p>
+                        <a href="#">{{$item->title}}</a>
+                        <p>1 x - <span class="price">${{$item->price}}</span></p>
                     </div>
                 </div>
-                <span class="dropdown-product-remove"><i class="icofont-bin"></i></span>
+                <span class="dropdown-product-remove cart_delete" data-id="{{$item->rowId}}"><i class="icofont-bin"></i></span>
             </li>
-            <li>
-                <div class="cart-item-desc">
-                    <a href="#" class="image">
-                        <img src="img/product-img/best-4.png" class="cart-thumb" alt="">
-                    </a>
-                    <div>
-                        <a href="#">Headphone</a>
-                        <p>2x - <span class="price">$49.99</span></p>
-                    </div>
-                </div>
-                <span class="dropdown-product-remove"><i class="icofont-bin"></i></span>
-            </li>
+            @endforeach
         </ul>
         <div class="cart-pricing my-4">
             <ul>
                 <li>
                     <span>Sub Total:</span>
-                    <span>$822.96</span>
+                    <span>${{(Cart::subtotal())}}</span>
                 </li>
-                <li>
-                    <span>Shipping:</span>
-                    <span>$30.00</span>
-                </li>
+
                 <li>
                     <span>Total:</span>
-                    <span>$856.63</span>
+                    <span>${{(Cart::subtotal())}}</span>
                 </li>
             </ul>
         </div>

@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'home'])->name('homepage');
 Auth::routes();
 Route::get('/admin',[AdminController::class, 'index'])->name('admin.dashboard');
-//Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->group(function (){
     Route::resource('users', UserController::class)->only('index', 'create', 'store', 'show', 'edit', 'destroy');
@@ -49,3 +49,8 @@ Route::post('cart/delete',[CartController::class,'cartDelete'])->name('cart.dele
   Route::get('checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 Route::get('product-category/{slug}', [ProductCategoryController::class, 'getproductcategory'])->name('getproductcategory');
 Route::get('product-detail/{slug}', [ProductCategoryController::class, 'productDetail'])->name('productdetail');
+
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
