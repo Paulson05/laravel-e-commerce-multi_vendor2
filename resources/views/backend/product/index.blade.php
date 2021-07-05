@@ -1,6 +1,6 @@
 @extends('backend.layout.master')
 
-@section('title', '| post')
+@section('title', '| Product | index')
 @section('content')
 
     <div class="pt-5">
@@ -267,9 +267,15 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="form-group">
-                                    <input type="file" name="photo" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                                <div class="input-group">
+                                       <span class="input-group-btn">
+                                         <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                           <i class="fa fa-picture-o"></i> Choose
+                                         </a>
+                                       </span>
+                                    <input id="thumbnail" class="form-control" type="text" name="photo">
                                 </div>
+                                <img id="holder" style="margin-top:15px;max-height:100px;">
 
                             </div>
 
@@ -287,6 +293,12 @@
 
 @endsection
 @section('script')
+    <script src="{{url('backend/assets/vendor/summernote/dist/summernote.js')}}"></script>
+
+    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+    <script>
+        $('#lfm').filemanager('image');
+    </script>
     <script>
         $('#cat_id').change(function () {
             var cat_id= $(this).val();

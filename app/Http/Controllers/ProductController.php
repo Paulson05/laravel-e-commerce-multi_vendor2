@@ -62,20 +62,6 @@ class ProductController extends Controller
 
         ]);
 
-//        if ( $request->hasfile('photo')){
-//            $file  =$request->file('photo');
-//            $extension = $file->getClientOriginalExtension();
-//            $filename =    time() . '.' .$extension;
-//            $file->move('upload/photos', $filename);
-//
-//        }
-//        else {
-//            $filename='';
-//        }
-//        $banner = Product::create(collect($request->only(['title','slug','description','status','conditions','stock', 'summary', 'size', 'price', 'offer_price', 'discount', 'cat_id', 'child_cat_id','brand_id']))->put('photo',$filename)->all());
-//        $banner->save();
-//        return redirect()->back();
-
         $data = $request->all();
         $slug=Str::slug($request->input('title'));
         $slug_count=Product::where('slug', $slug)->count();
@@ -86,7 +72,7 @@ class ProductController extends Controller
         $data['offer_price']=($request->price-($request->price*$request->discount)/100);
        $status =Product::create($data);
        if ($status){
-           return redirect()->route('category.index');
+           return redirect()->route('product.index');
 
        }
        else{

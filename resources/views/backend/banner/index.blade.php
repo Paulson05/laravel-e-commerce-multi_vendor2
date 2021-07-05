@@ -1,6 +1,6 @@
 @extends('backend.layout.master')
 
-@section('title', '| post')
+@section('title', '| index')
 @section('content')
 
 
@@ -72,7 +72,10 @@
                                      <form style="display: inline-block" method="post" action="{{route('banner.destroy', ['banner' => $banner->id])}}" >
                                          @csrf
                                          @method('DELETE')
-                                         <button type="submit" class="btn btn-danger  p-0"><i class="btn btn-danger btn-sm fa fa-trash" ></i></button>
+                                         <a href="{{ route('banner.edit',$banner->id) }}" >
+                                             <i class="btn btn-danger fas fa-edit" ></i>
+
+                                         </a>
                                      </form>
                                  </td>
                              </tr>
@@ -145,7 +148,7 @@
 
                         </div>
                        <div class="col-12">
-                          <textarea name="description"  >
+                          <textarea name="description" id="description"  class="form-control" >
 
                            </textarea>
                        </div>
@@ -164,6 +167,8 @@
 @endsection
 
 @section('script')
+
+
     <script src="{{url('backend/assets/vendor/summernote/dist/summernote.js')}}"></script>
 
     <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>

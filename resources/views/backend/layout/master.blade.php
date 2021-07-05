@@ -4,7 +4,7 @@
 
 
 <head>
-    <title>:: Lucid :: Home</title>
+    <title>admin @yield('title')</title>
 @include('backend.layout.partials.head')
 </head>
 <body class="theme-cyan">

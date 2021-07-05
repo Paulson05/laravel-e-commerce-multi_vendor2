@@ -52,29 +52,22 @@ class CategoryController extends Controller
             'parent_id'=> 'nullable',
         ]);
 
-        if ( $request->hasfile('photo')){
-            $file  =$request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $filename =    time() . '.' .$extension;
-            $file->move('upload/photos', $filename);
 
-        }
-        else {
-            $filename='';
-        }
-        $banner = Category::create(collect($request->only(['title','slug','parent_id','status','is_parent','summary']))->put('photo',$filename)->all());
-        $banner->save();
+    $data = $request->all();
+    $slug=Str::slug($request->input('title'));
+     $slug_count=Category::where('slug', $slug)->count();
+     if ($slug_count>0){
+         $slug = time(). '_'.$slug;
+     }
+     $data['slug']=$slug;
+     $status = Category::create($data);
+     if($status){
+         return  redirect()->route('category.index')->with('success', 'categoru created successfull');
+     }
+     else{
         return redirect()->back();
 
-//    $data = $request->all();
-//    $slug=Str::slug($request->input('title'));
-//     $slug_count=Category::where('slug', $slug)->count();
-//     if ($slug_count>0){
-//         $slug = time(). '_'.$slug;
-//     }
-//     $data['slug']=$slug;
-////     $slug['offer_price']=($request->price-($request->price*$request->discount)/100);
-//     return redirect()->back();
+    }
 
     }
 

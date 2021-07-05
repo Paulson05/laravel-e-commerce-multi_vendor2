@@ -101,7 +101,13 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $banner=Banner::find($id);
+        if($banner){
+            return view('backend.banner.edit',compact('banner'));
+        }
+        else{
+            return back()->with('error');
+        }
     }
 
     /**
@@ -113,7 +119,28 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request,[
+            'title' => 'string|required',
+            'slug'=> 'string|required',
+            'description'=> 'string|nullable',
+            'conditions'=>'nullable|in:banner, promo',
+            'photo'=> 'required',
+            'status'=>'nullable|in:active, inactive',
+
+        ]);
+
+
+        $banner=Banner::find($id);
+        if($banner){
+            $data= $request->all();
+
+            $status=Banner::update($data);
+        }
+
+        else{
+            return back()->with('error');
+        }
     }
 
     /**
