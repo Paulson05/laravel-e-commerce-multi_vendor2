@@ -41,7 +41,6 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
         $this->validate($request,[
             'title' => 'required',
             'slug'=> 'required',
@@ -51,8 +50,6 @@ class CategoryController extends Controller
             'is_parent' => 'sometimes|in:1',
             'parent_id'=> 'nullable',
         ]);
-
-
     $data = $request->all();
     $slug=Str::slug($request->input('title'));
      $slug_count=Category::where('slug', $slug)->count();

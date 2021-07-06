@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call(UsersTableSeeder::class);
-        Brand::factory(10)->create();
-         Banner::factory(5)->create();
-        Category::factory(10)->create();
-        Product::factory(100)->create();
+        Brand::factory(5)->create();
+         Banner::factory(3)->create();
+        Category::factory(100)->create();
+        Product::factory(200)->create();
 
 
 //         \App\Models\User::factory(10)->create();

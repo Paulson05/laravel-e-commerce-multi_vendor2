@@ -4,7 +4,7 @@
 @section('content')
     @include('Frontend.template.partials.welcome')
     <!-- Shop Catagory Area -->
-    @include('Frontend.template.partials.category')
+    @include('Frontend.category')
     <!-- Shop Catagory Area -->
 
     <!-- Quick View Modal Area -->
@@ -80,7 +80,7 @@
     <!-- Quick View Modal Area -->
 
     <!-- Best Selling Products -->
-    @include('Frontend.template.partials.product')
+    @include('Frontend.product')
     <!-- Best Selling Products -->
 
     <!-- Offer Area -->

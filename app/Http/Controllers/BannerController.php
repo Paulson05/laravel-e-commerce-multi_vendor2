@@ -41,8 +41,6 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $this->validate($request,[
             'title' => 'string|required',
             'slug'=> 'string|required',
@@ -50,9 +48,7 @@ class BannerController extends Controller
             'conditions'=>'nullable|in:banner, promo',
             'photo'=> 'required',
             'status'=>'nullable|in:active, inactive',
-
         ]);
-
         $data= $request->all();
         $slug=Str::slug($request->input('title'));
         $slug_count=Banner::where('slug', $slug)->count();
@@ -119,7 +115,6 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $this->validate($request,[
             'title' => 'string|required',
             'slug'=> 'string|required',
@@ -129,7 +124,6 @@ class BannerController extends Controller
             'status'=>'nullable|in:active, inactive',
 
         ]);
-
 
         $banner=Banner::find($id);
         if($banner){

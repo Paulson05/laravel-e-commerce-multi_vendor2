@@ -40,13 +40,11 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
         $this->validate($request,[
             'title' => 'required',
             'slug'=> 'required',
             'photo'=> 'required',
             'status'=> 'required',
-
         ]);
         $data= $request->all();
         $slug=Str::slug($request->input('title'));

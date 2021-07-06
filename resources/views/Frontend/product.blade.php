@@ -45,9 +45,7 @@
                     <!-- Product Description -->
                     <div class="product_description">
                         <!-- Add to cart -->
-                        <div class="product_add_to_cart">
-                            <a href="#"><i class="icofont-cart"></i> Add to Cart</a>
-                        </div>
+
 
                         <!-- Quick View -->
                         <div class="product_quick_view">

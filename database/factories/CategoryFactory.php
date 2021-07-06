@@ -25,7 +25,7 @@ class CategoryFactory extends Factory
             'title' => $this->faker->word(),
             'slug' => $this->faker->unique()->slug(),
             'summary'=> $this->faker->text,
-            'photo'=> $this->faker->imageUrl('60', '60'),
+            'photo'=> $this->faker->imageUrl('350', '350'),
             'is_parent' =>  $this->faker->randomElement([true, false]),
             'status' => $this->faker->randomElement(['active', 'inactive']),
             'parent_id'=> $this->faker->randomElement(Category::pluck('id')->toArray()),
