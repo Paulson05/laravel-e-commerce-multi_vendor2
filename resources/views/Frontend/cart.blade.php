@@ -37,3 +37,12 @@
         </div>
     </div>
 </div>
+
+<div class="account-area">
+    <div class="user-thumbnail">
+        <img src="img/bg-img/user.jpg" alt="">
+    </div>
+    <ul class="user-meta-dropdown">
+        <li><a href="{{route('user.auth')}}"><i class="icofont-logout"></i>Register/Login</a></li>
+    </ul>
+</div>

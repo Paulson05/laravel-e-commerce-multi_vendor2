@@ -1,6 +1,3 @@
-
-
-
 @extends('Frontend.template.default')
 @section('title', '| user/register')
 @section('content')
@@ -11,7 +8,7 @@
                     <h5>Login &amp; Register</h5>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('homepage')}}">Home</a></li>
-                        <li class="breadcrumb-item active"><a href="{{route('user.auth')}}">Register/Login</a></li>
+                        <li class="breadcrumb-item active">Login &amp; Register</li>
                     </ol>
                 </div>
             </div>
@@ -23,16 +20,43 @@
     <div class="bigshop_reg_log_area section_padding_100_50">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-12">
+                <div class="col-12 col-md-6">
                     <div class="login_form mb-50">
-                        <h5 class="mb-3 text-center">Register</h5>
+                        <h5 class="mb-3">Login</h5>
+
+                        <form action="" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" placeholder="Email or Username">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Password">
+                            </div>
+                            <div class="form-check">
+                                <div class="custom-control custom-checkbox mb-3 pl-1">
+                                    <input type="checkbox" class="custom-control-input" id="customChe">
+                                    <label class="custom-control-label" for="customChe">Remember me for this computer</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm">Login</button>
+                        </form>
+                        <!-- Forget Password -->
+                        <div class="forget_pass mt-15">
+                            <a href="#">Forget Password?</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="login_form mb-50">
+                        <h5 class="mb-3">Register</h5>
 
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group row">
                                 <label for="fullname" class="col-md-4 col-form-label text-md-right">{{ __('fullname') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input id="username" type="text" class="form-control @error('fullname') is-invalid @enderror" name="full_name" value="{{ old('fullname') }}" required autocomplete="name" autofocus>
 
                                     @error('fullname')
@@ -45,7 +69,7 @@
                             <div class="form-group row">
                                 <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="name" autofocus>
 
                                     @error('username')
@@ -55,13 +79,13 @@
                                     @enderror
                                 </div>
                             </div>
-                              <div>
+                            <div>
 
-                              </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                     @error('email')
@@ -77,7 +101,7 @@
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                     @error('password')
@@ -91,7 +115,7 @@
                             <div class="form-group row">
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
@@ -104,20 +128,9 @@
                                 </div>
                             </div>
                         </form>
-                        <!-- Forget Password -->
-                        @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                        @endif
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
-    </div>
-@endsection
-
-
+    @endsection
