@@ -9,7 +9,7 @@
                 <nav class="classy-navbar" id="bigshopNav">
 
                     <!-- Nav Brand -->
-                    <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt="logo"></a>
+                    <a href="{{route('homepage')}}" class="nav-brand"><img src="img/core-img/logo.png" alt="logo"></a>
 
                     <!-- Toggler -->
                     <div class="classy-navbar-toggler">

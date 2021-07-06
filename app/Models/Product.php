@@ -12,7 +12,7 @@ class Product extends Model
     use HasFactory;
 
     public function rel_prod(){
-        return $this->hasMany(Product::class, 'cat_id', 'cat_id')->where('status', 'active')->limit(2);
+        return $this->hasMany(Product::class, 'cat_id', 'cat_id')->where('status', 'active')->limit(10);
     }
 
     public static function getProductByCart($id){

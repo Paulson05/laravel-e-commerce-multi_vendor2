@@ -1,5 +1,19 @@
 @extends('Frontend.template.default')
 @section('content')
+    <div class="breadcumb_area">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <h5>Shop List</h5>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{route('homepage')}}">Home</a></li>
+
+                        <li class="breadcrumb-item active"> Category->{{$categories->title}}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="shop_grid_area section_padding_100">
         <div class="container">
             <div class="row">
@@ -29,50 +43,52 @@
                                 @php
                                     $photo=explode(',',$item->photo);
                                 @endphp
-                            <!-- Single Product -->
-                            <div class="col-9 col-sm-6 col-md-4 col-lg-3">
-                                <div class="single-product-area mb-30">
-                                    <div class="product_image">
-                                        <!-- Product Image -->
-                                        <img class="normal_img" src="img/product-img/new-1-back.png" alt="">
-                                        <img class="hover_img" src="img/product-img/new-1.png" alt="">
+                                <!-- Single Product -->
+                                    <div class="col-9 col-sm-6 col-md-4 col-lg-3">
+                                        <div class="single-product-area mb-30">
+                                            <div class="product_image">
+                                                <!-- Product Image -->
+                                                <img class="normal_img" src="{{$photo[0]}}" alt="">
 
-                                        <!-- Product Badge -->
-                                        <div class="product_badge">
-                                            <span>New</span>
-                                        </div>
+                                                <!-- Product Badge -->
+                                                <div class="product_badge">
+                                                    <span>New</span>
+                                                </div>
 
-                                        <!-- Wishlist -->
-                                        <div class="product_wishlist">
-                                            <a href="wishlist.html"><i class="icofont-heart"></i></a>
-                                        </div>
+                                                <!-- Wishlist -->
+                                                <div class="product_wishlist">
+                                                    <a href="wishlist.html"><i class="icofont-heart"></i></a>
+                                                </div>
 
-                                        <!-- Compare -->
-                                        <div class="product_compare">
-                                            <a href="compare.html"><i class="icofont-exchange"></i></a>
+                                                <!-- Compare -->
+                                                <div class="product_compare">
+                                                    <a href="compare.html"><i class="icofont-exchange"></i></a>
+                                                </div>
+                                            </div>
+
+                                            <!-- Product Description -->
+                                            <div class="product_description">
+                                                <!-- Add to cart -->
+                                                <div class="product_add_to_cart">
+                                                    <a href=""  data-quantity="1" data-product-id="{{$item->id}}" class="add_to_cart" id="add_to_cart{{$item->id}}">
+                                                        <i class="fa fa-cart-arrow-down">add to cart</i>
+
+                                                    </a>
+                                                </div>
+
+                                                <!-- Quick View -->
+                                                <div class="product_quick_view">
+                                                    <a href="#" data-toggle="modal" data-target="#quickview"><i class="icofont-eye-alt"></i> Quick View</a>
+                                                </div>
+
+                                                <p class="brand_name">{{App\Models\Brand::where('id', $item->brand_id)->value('title')}}</p>
+                                                <a href="{{route('productdetail', $item->slug)}}">{{$item->title}}</a>
+                                                <h6 class="product-price">${{$item->price}}</h6>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <!-- Product Description -->
-                                    <div class="product_description">
-                                        <!-- Add to cart -->
-                                        <div class="product_add_to_cart">
-                                            <a href="#"><i class="icofont-shopping-cart"></i> Add to Cart</a>
-                                        </div>
-
-                                        <!-- Quick View -->
-                                        <div class="product_quick_view">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="icofont-eye-alt"></i> Quick View</a>
-                                        </div>
-
-                                        <p class="brand_name">Top</p>
-                                        <a href="#">{{$item->title}}</a>
-                                        <h6 class="product-price">${{$item->price}}</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
+                                    <!-- Single Product -->
                                 @endforeach
                             @endif
 
