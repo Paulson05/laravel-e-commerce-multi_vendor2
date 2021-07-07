@@ -31,7 +31,51 @@
 
 <!-- jQuery (Necessary for All JavaScript Plugins) -->
 @include('Frontend.template.partials.script')
+<script>
+    $(document).on('click','.cart_delete', function (e){
+        e.preventDefault();
+        var cart_id=$(this).data('id');
+        // alert(cart_id);
 
+        var token= "{{csrf_token()}}";
+        var path = "{{route('cart.delete')}}";
+
+        $.ajax({
+            url:path,
+            type:"POST",
+            datatype:"JSON",
+            data:{
+                cart_id:cart_id,
+
+                _token:token,
+            },
+
+
+
+            success:function (data){
+                // console.log(data);
+
+
+
+
+                if (data['status']){
+                    $('body #nav-ajax').html(data['nav']);
+                    $('body #nav-counter').html(data['cart_counter']);
+                    swal({
+                        title: "Good job!",
+                        text: data['message'],
+                        icon: "success",
+                        button: "ok",
+                    });
+                }
+
+            },
+            error:function (err){
+                console.log(err);
+            }
+        });
+    });
+</script>
 </body>
 
 
