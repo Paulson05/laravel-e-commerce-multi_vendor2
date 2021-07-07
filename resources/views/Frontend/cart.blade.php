@@ -43,6 +43,8 @@
         <img src="img/bg-img/user.jpg" alt="">
     </div>
     <ul class="user-meta-dropdown">
-        <li><a href="{{route('user.auth')}}"><i class="icofont-logout"></i>Register/Login</a></li>
+        <li><a href="{{route('user.auth')}}"><i class="icofont-ui-user"></i>Register/Login</a></li>
+        <li><a href="{{route('user.dashboard')}}"><i class="icofont-ui-social-link"></i>My Account</a></li>
+
     </ul>
 </div>

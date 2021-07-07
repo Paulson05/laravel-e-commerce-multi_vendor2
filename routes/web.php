@@ -54,6 +54,15 @@ Route::get('product-category/{slug}', [ProductCategoryController::class, 'getpro
 Route::get('product-detail/{slug}', [ProductCategoryController::class, 'productDetail'])->name('productdetail');
 
 
+Route::prefix('user')->group(function (){
+    Route::get('dashboard', [IndexController::class, 'dashboard'])->name('user.dashboard');
+    Route::get('address', [IndexController::class, 'address'])->name('user.address');
+    Route::get('accountdetails', [IndexController::class, 'accountdetails'])->name('user.accountdetails');
+    Route::get('order', [IndexController::class, 'order'])->name('user.order');
+
+
+
+});
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });

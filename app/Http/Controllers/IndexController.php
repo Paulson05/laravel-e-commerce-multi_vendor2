@@ -16,4 +16,16 @@ class IndexController extends Controller
     public function auth(){
         return view('Frontend.auth.auth');
     }
+    public function dashboard(){
+         return view('Frontend.userdashboard.dashboard');
+     }
+    public function address(){
+        return view('Frontend.userdashboard.address');
+    }
+    public function accountdetails(){
+        return view('Frontend.userdashboard.accountdetail');
+    }
+    public function order(){
+        return view('Frontend.userdashboard.order');
+    }
 }
