@@ -16,3 +16,4 @@
 <script src="{{asset('/js/jquery.nice-select.min.js')}}"></script>
 <script src="{{asset('/js/wow.min.js')}}"></script>
 <script src="{{asset('/js/default/active.js')}}"></script>
+@yield('script')

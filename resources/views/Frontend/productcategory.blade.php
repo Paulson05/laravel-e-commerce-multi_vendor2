@@ -28,18 +28,21 @@
                                 <a href="shop-list-left-sidebar.html" data-toggle="tooltip" data-placement="top" title="List View"><i class="icofont-listine-dots"></i></a>
                             </div>
                         </div>
-                        <select class="small right">
-                            <option selected>Short by Popularity</option>
-                            <option value="1">Short by Newest</option>
-                            <option value="2">Short by Sales</option>
-                            <option value="3">Short by Ratings</option>
+                        <select id="sortBy" class="small right">
+                            <option>default</option>
+                            <option value="priceAsc" {{old('sortBy')== 'priceAsc' ? 'selected' : ''}} >Price - lower to higher</option>
+                            <option value="priceDesc">Price - Higher to lower</option>
+                            <option value="titleAsc">Alphabetic Ascsending</option>
+                            <option value="titleDesc">Alphabetic Descending</option>
+                            <option value="DiscAsc">Dicsount - Lower to higher</option>
+                            <option value="DiscDesc" >Dicsount - Higher to higher</option>
                         </select>
                     </div>
 
                     <div class="shop_grid_product_area">
                         <div class="row justify-content-center">
-                        @if(count($categories->products)>0)
-                            @foreach($categories->products as $item)
+                        @if(count($products)>0)
+                            @foreach($products as $item)
                                 @php
                                     $photo=explode(',',$item->photo);
                                 @endphp

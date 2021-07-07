@@ -56,6 +56,7 @@ class ProductCategoryController extends Controller
 
         return view('frontend.productcategory')->with([
             'categories' => $categories,
+            'products' => $products,
             'route' => $route
         ]);
     }

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         Brand::factory(5)->create();
          Banner::factory(3)->create();
         Category::factory(100)->create();
-        Product::factory(200)->create();
+        Product::factory(300)->create();
 
 
 //         \App\Models\User::factory(10)->create();
