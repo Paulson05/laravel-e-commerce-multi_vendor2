@@ -31,70 +31,26 @@
                         <select id="sortBy" class="small right">
                             <option>default</option>
                             <option value="priceAsc" {{old('sortBy')== 'priceAsc' ? 'selected' : ''}} >Price - lower to higher</option>
-                            <option value="priceDesc">Price - Higher to lower</option>
-                            <option value="titleAsc">Alphabetic Ascsending</option>
-                            <option value="titleDesc">Alphabetic Descending</option>
-                            <option value="DiscAsc">Dicsount - Lower to higher</option>
-                            <option value="DiscDesc" >Dicsount - Higher to higher</option>
+                            <option value="priceDesc" {{old('sortBy')== 'priceDesc' ? 'selected' : ''}} >Price - Higher to lower</option>
+                            <option value="titleAsc" {{old('sortBy')== 'titleAsc' ? 'selected' : ''}} >Alphabetic Ascsending</option>
+                            <option value="titleDesc" {{old('sortBy')== 'titleDesc' ? 'selected' : ''}}>Alphabetic Descending</option>
+                            <option value="DiscAsc" {{old('sortBy')== 'DiscAsc' ? 'selected' : ''}}>Dicsount - Lower to higher</option>
+                            <option value="DiscDesc" {{old('sortBy')== 'DiscDesc' ? 'selected' : ''}} >Dicsount - Higher to higher</option>
                         </select>
                     </div>
 
                     <div class="shop_grid_product_area">
                         <div class="row justify-content-center">
-                        @if(count($products)>0)
-                            @foreach($products as $item)
-                                @php
-                                    $photo=explode(',',$item->photo);
-                                @endphp
-                                <!-- Single Product -->
-                                    <div class="col-9 col-sm-6 col-md-4 col-lg-3">
-                                        <div class="single-product-area mb-30">
-                                            <div class="product_image">
-                                                <!-- Product Image -->
-                                                <img class="normal_img" src="{{$photo[0]}}" alt="">
+                       @include('Frontend.singlepage')
 
-                                                <!-- Product Badge -->
-                                                <div class="product_badge">
-                                                    <span>New</span>
-                                                </div>
 
-                                                <!-- Wishlist -->
-                                                <div class="product_wishlist">
-                                                    <a href="wishlist.html"><i class="icofont-heart"></i></a>
-                                                </div>
+                            </div>
 
-                                                <!-- Compare -->
-                                                <div class="product_compare">
-                                                    <a href="compare.html"><i class="icofont-exchange"></i></a>
-                                                </div>
-                                            </div>
+                        <div class="page-loader-wrapper">
+                            <div class=" ">
+                                <div class="m-t-30 ajax-load text-center" style="display: none !important;"><img src="{{url('backend/assets/images/loader.gif')}}" width="50%" height="50%" alt="Lucid"></div>
 
-                                            <!-- Product Description -->
-                                            <div class="product_description">
-                                                <!-- Add to cart -->
-                                                <div class="product_add_to_cart">
-                                                    <a href=""  data-quantity="1" data-product-id="{{$item->id}}" class="add_to_cart" id="add_to_cart{{$item->id}}">
-                                                        <i class="fa fa-cart-arrow-down">add to cart</i>
-
-                                                    </a>
-                                                </div>
-
-                                                <!-- Quick View -->
-                                                <div class="product_quick_view">
-                                                    <a href="#" data-toggle="modal" data-target="#quickview"><i class="icofont-eye-alt"></i> Quick View</a>
-                                                </div>
-
-                                                <p class="brand_name">{{App\Models\Brand::where('id', $item->brand_id)->value('title')}}</p>
-                                                <a href="{{route('productdetail', $item->slug)}}">{{$item->title}}</a>
-                                                <h6 class="product-price">${{$item->price}}</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Single Product -->
-                                @endforeach
-                            @endif
-
+                            </div>
 
                         </div>
                     </div>
@@ -148,15 +104,13 @@
             })
                 .done(function (data){
                     if(data.html ==''){
-                        $('.ajax_load').html('no more product avaible');
+                        $('.ajax_load').html('no more product avaliable');
                         return;
                     }
                     $('.ajax-load').hide();
                     $('#product-data').append(data.html);
                 })
-                .fail(function (){
-                    alert('something when wrong please try again')
-                });
+
         }
         var page=1;
         $(window).scroll(function (){
