@@ -8,11 +8,12 @@
             <li>
                 <div class="cart-item-desc">
                     <a href="#" class="image">
-                        <img src="{{$item->photo}}" class="cart-thumb" alt="">
+                        <img src="{{$item->photo}}" class="cart-thumb" alt="johu">
+
                     </a>
                     <div>
-                        <a href="#">{{$item->title}}</a>
-                        <p>1 x - <span class="price">${{$item->price}}</span></p>
+                        <a href="#"></a>
+                        <p> <span class="price">${{$item->price}}</span></p>
                     </div>
                 </div>
                 <span class="dropdown-product-remove cart_delete" data-id="{{$item->rowId}}"><i class="icofont-bin"></i></span>
@@ -33,7 +34,10 @@
             </ul>
         </div>
         <div class="cart-box">
-            <a href="checkout-1.html" class="btn btn-primary d-block">Checkout</a>
+            <button class="btn btn-success"><a href="{{route('cart.dashboard')}}">Cart</a></button>
+            <button class="btn btn-primary"><a href="">Checkout</a></button>
+
+
         </div>
     </div>
 </div>

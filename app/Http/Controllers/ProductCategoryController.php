@@ -21,29 +21,29 @@ class ProductCategoryController extends Controller
         }
         else{
             if ($sort=='priceAsc'){
-                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->orderBy('offer_price', 'ASC')->paginate(5);
+                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->orderBy('offer_price', 'ASC')->paginate(20);
             }
             elseif ($sort=='priceDesc'){
-                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->orderBy('offer_price', 'DESC')->paginate(5);
+                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->orderBy('offer_price', 'DESC')->paginate(20);
 
             }
             elseif ($sort=='DiscAsc'){
-                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->orderBy('price', 'ASC')->paginate(5);
+                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->orderBy('price', 'ASC')->paginate(20);
 
             }
             elseif ($sort=='DiscDesc'){
-                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->orderBy('price', 'DESC')->paginate(5);
+                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->orderBy('price', 'DESC')->paginate(20);
 
             }
             elseif ($sort=='titleAsc'){
-                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->orderBy('title', 'ASC')->paginate(5);
+                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->orderBy('title', 'ASC')->paginate(20);
 
             }
             elseif ($sort=='titleDesc'){
-                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->orderBy('title', 'DESC')->paginate(5);
+                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->orderBy('title', 'DESC')->paginate(20);
             }
             else{
-                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->paginate(5);
+                $products = Product::where(['status' => 'active', 'cat_id' =>$categories->id])->paginate(20);
 
             }
         }

@@ -46,6 +46,9 @@ Route::prefix('admin')->group(function (){
 Route::get('home/whishlist', [WhishlistController::class, 'index'])->name('whishlist');
 Route::resource('coupon', CouponController::class)->only('index', 'create', 'store', 'show', 'edit', 'destroy');
 
+
+Route::get('cart/dashboard', [CartController::class, 'dashboard'])->name('cart.dashboard');
+
 Route::get('cart/index', [CartController::class, 'index'])->name('cart.index');
 Route::post('cart/store',[CartController::class,'cartStore'])->name('cart.store');
 Route::post('cart/delete',[CartController::class,'cartDelete'])->name('cart.delete');
@@ -59,9 +62,6 @@ Route::prefix('user')->group(function (){
     Route::get('address', [IndexController::class, 'address'])->name('user.address');
     Route::get('accountdetails', [IndexController::class, 'accountdetails'])->name('user.accountdetails');
     Route::get('order', [IndexController::class, 'order'])->name('user.order');
-
-
-
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

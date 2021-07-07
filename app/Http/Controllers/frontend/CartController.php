@@ -14,7 +14,9 @@ class CartController extends Controller
     public function index(){
         return view('frontend.cart.index');
     }
-
+  public function dashboard(){
+        return view('Frontend.cartdashboard');
+  }
     public function cartStore(Request $request){
 //        dd($request->all());
     $product_qty=$request->input('product_qty');
