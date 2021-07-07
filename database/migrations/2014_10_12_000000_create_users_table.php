@@ -25,6 +25,28 @@ class CreateUsersTable extends Migration
             $table->text('address')->nullable();
             $table->enum('role',['admin', 'seller', 'customer'])->default('customer');
             $table->enum('status',['active', 'inactive'])->default('active');
+
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('postcode')->nullable();
+
+            $table->mediumText('note')->nullable();
+
+
+            $table->string('sfull_name')->nullable();
+            $table->string('slast_name')->nullable();
+            $table->string('semail')->nullable();;
+            $table->string('sphone')->nullable();;
+            $table->string('scountry')->nullable();
+            $table->string('saddress')->nullable();
+            $table->string('scity')->nullable();
+            $table->string('sstate')->nullable();
+
+
+
+
+
             $table->rememberToken();
             $table->timestamps();
         });

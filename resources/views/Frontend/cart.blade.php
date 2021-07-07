@@ -45,6 +45,7 @@
     <ul class="user-meta-dropdown">
         <li><a href="{{route('user.auth')}}"><i class="icofont-ui-user"></i>Register/Login</a></li>
         <li><a href="{{route('user.dashboard')}}"><i class="icofont-ui-social-link"></i>My Account</a></li>
-
+        <li><a href="{{route('user.order')}}"><i class="icofont-ui-cart"></i>Order List</a></li>
+        <li><a href=""><i class="icofont-ui-contact-list"></i> Whishlist List</a></li>
     </ul>
 </div>
