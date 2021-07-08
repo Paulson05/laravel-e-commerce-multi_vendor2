@@ -23,32 +23,32 @@
                                     <th>
                                         S/N
                                     </th>
-                                    <th>Title</th>
+                                    <th>code</th>
 
-                                    <th>Description</th>
+                                    <th>Type</th>
                                     <th>Status</th>
-                                    <th>Condition</th>
+                                    <th>Value</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-
+                                   @foreach($coupon as $item)
                                     <tr>
                                         <td>
-                                            id
+                                          {{$item->id}}
                                         </td>
                                         <td>
-                                           title
+                                            {{$item->code}}
                                         </td>
 
                                         <td>
-                                          description
+                                            {{$item->type}}
                                         </td>
                                         <td>
-                                            status
+                                            {{$item->value}}
                                         </td>
                                         <td>
-                                            condition
+                                            {{$item->status}}
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-info" title="Edit"><i class="fa fa-edit"></i></button>
@@ -59,7 +59,7 @@
                                             </form>
                                         </td>
                                     </tr>
-
+                                   @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -73,38 +73,33 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h6 class="title" id="defaultModalLabel">Add Banner</h6>
+                    <h6 class="title" id="defaultModalLabel">Add Coupon</h6>
                 </div>
-                <form id="basic-form" class="form-control" method="post" action="{{route('banner.store')}}">
+                <form id="basic-form" class="form-control" method="post" action="{{route('coupon.store')}}">
                     @csrf
                     <div class="modal-body">
                         <div class="row clearfix">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <input type="text" name="title" placeholder="title" class="form-control @error('title'){{"is-invalid"}}@enderror" value = "{{Request::old('title') ?: ''}}">
-                                    @error('title')
-                                    <span class="form-text text-danger">{{$errors->first('title')}}</span>
+                                    <input type="text" name="code" placeholder="code" class="form-control @error('code'){{"is-invalid"}}@enderror" value = "{{Request::old('code') ?: ''}}">
+                                    @error('code')
+                                    <span class="form-text text-danger">{{$errors->first('code')}}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <input type="text" name="slug"  placeholder="slug" class="form-control @error('slug'){{"is-invalid"}}@enderror" value = "{{Request::old('slug') ?: ''}}">
-                                    @error('slug')
-                                    <span class="form-text text-danger">{{$errors->first('slug')}}</span>
+                                    <input type="number" name="value" placeholder="value" class="form-control @error('value'){{"is-invalid"}}@enderror" value = "{{Request::old('value') ?: ''}}">
+                                    @error('value')
+                                    <span class="form-text text-danger">{{$errors->first('value')}}</span>
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label>condition</label>
-                                    <select id="single-selection" name="conditions" class="col-12 form-control multiselect multiselect-custom">
-                                        <option value="">----------condition----------</option>
-                                        <option value="banner" {{old('conditions') == 'banner' ? 'selected' : ''}}>banner</option>
-                                        <option value="promo" {{old('conditions')== 'promo' ? 'selected' : ''}}>promo</option>
-                                    </select>
-                                </div>
-                            </div>
+
+
+
+                        </div>
+                    </div>
 
                             <div class="col-12">
                                 <div class="form-group">
@@ -115,27 +110,23 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input type="file" name="photo" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-                                </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <select id="single-selection" name="type" class="col-12 form-control multiselect multiselect-custom">
+                                <option value="">----------select type----------</option>
+                                <option value="fixed" {{old('type')== 'fixed' ? 'selected' : ''}}>fixed</option>
+                                <option value="percent" {{old('type')== 'percent' ? 'selected' : ''}}>percent</option>
+                            </select>
 
-                            </div>
-                            <div class="col-12">
-                          <textarea class="summernote" name="description"  >
-
-                           </textarea>
-                            </div>
-                        </div>
-                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
                     </div>
-                </form>
+
 
             </div>
         </div>
+                </form>
     </div>
 
 @endsection

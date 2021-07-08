@@ -30,7 +30,7 @@ class CartController extends Controller
     foreach (Cart::instance('shopping')->content()as $item){
         $cart_array[]=$item->id;
     }
-    Cart::instance('shopping')->add($product_id,$product[0]['title'],$product_qty, $price);
+    Cart::instance('shopping')->add($product_id,$product[0]['title'],$product_qty, $price)->assciate('App\Model\Product');
 
         $response['status']=true;
         $response['product_id']=$product_id;

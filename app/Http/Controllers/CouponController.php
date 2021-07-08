@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -13,7 +14,10 @@ class CouponController extends Controller
      */
     public function index()
     {
-        return  view('backend.coupon.index');
+        $coupon = Coupon::all();
+        return  view('backend.coupon.index')->with([
+            'coupon' => $coupon
+        ]);
     }
 
     /**
@@ -34,7 +38,27 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+// dd($request->all());
+        $this->validate($request,[
+            'code' => 'required|min:2',
+            'type' => 'required|in:fixed, percent',
+            'status'=> 'required|in:active, inactive',
+            'value'=>   'required|numeric'
+            ]);
+
+
+        $data= $request->all();
+        $status = Coupon::create($data);
+        if($status){
+            return  redirect()->route('coupon.index')->with('success', 'coupon created successfull');
+        }
+        else{
+            return redirect()->back();
+
+        }
+
+
     }
 
     /**
