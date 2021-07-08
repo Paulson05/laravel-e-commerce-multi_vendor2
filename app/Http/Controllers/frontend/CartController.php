@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
 use App\Models\Product;
 //use Gloudemans\Shoppingcart\Cart;
  use Gloudemans\Shoppingcart\Facades\Cart;
@@ -71,5 +72,52 @@ class CartController extends Controller
         return json_encode($response);
     }
 
+
+//    public function cartUpdate(Request $request){
+//        $this->validate($request,[
+//            'product_qty' => 'required|numeric',
+//        ]);
+//        $rowId =$request->input('rowId');
+//        $request_quantity= $request->input('product_qty');
+//        $productQuantity= $request->input('productQuantity');
+//
+//        if ($request_quantity>$productQuantity){
+//            $message= "we currentyly do not have  enough item in stock";
+//            $response['status']=false;
+//        }
+//        elseif($request_quantity<1){
+//            $message= "you can add less than 1 quantity";
+//            $response['status']=false;
+//        }
+//        else{
+//            Cart::instance('shopping')->update($rowId, $request_quantity);
+//            $message= "quantity was updated successfully";
+//            $response['status']=true;
+//        }
+//
+//        if($request->ajax()){
+//            $header= view('')->render();
+//            $response['header']=$header;
+//        }
+//        return json_encode($response);
+//    }
+//
+//    public function CouponAdd(Request $request){
+//       $coupon = Coupon::where('code', $request->input('code'))->first();
+//
+//       if (!$coupon){
+//           return back()->with('error', 'invalid coupon , plsese enter valid coupon code');
+//       }
+//        if ($coupon){
+//            $total_price= Cart::instance('shopping')->subtotal();
+//            session()->put('coupon',[
+//                'id'=> $coupon->id,
+//                'code,'=> $coupon->code,
+//                'value'=> $coupon->discount($total_price),
+//            ]);
+//            return back()->with('success', 'coupon applied succcesfully');
+//
+//        }
+//    }
 
 }

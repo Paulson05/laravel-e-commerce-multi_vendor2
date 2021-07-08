@@ -9,7 +9,7 @@
                 <nav class="classy-navbar" id="bigshopNav">
 
                     <!-- Nav Brand -->
-                    <a href="{{route('homepage')}}" class="nav-brand"><img src="img/core-img/logo.png" alt="logo"></a>
+                    <a href="{{route('homepage')}}" class="nav-brand"><img src="{{asset('img/core-img/logo.png')}}" alt="logo"></a>
 
                     <!-- Toggler -->
                     <div class="classy-navbar-toggler">
@@ -41,7 +41,7 @@
 
                         <!-- Wishlist -->
                         <div class="wishlist-area">
-                            <a href="wishlist.html" class="wishlist-btn"><i class="icofont-heart"></i></a>
+                            <a href="{{route('whishlist')}}" class="wishlist-btn"><i class="icofont-heart"></i></a>
                         </div>
 
                         <!-- Cart -->

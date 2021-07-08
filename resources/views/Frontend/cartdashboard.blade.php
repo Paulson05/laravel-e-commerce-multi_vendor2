@@ -49,7 +49,7 @@
                                     <td>${{$item->price}}</td>
                                     <td>
                                         <div class="quantity">
-                                            <input type="number" class="qty-text" id="qty2" step="1" min="1" max="99" name="quantity" value="{{$item->qty}}">
+                                            <input type="number" class="qty-text" data-id="{{$item->rowId}}" id="qty-input-{{$item->rowId}}" step="1" min="1" max="99" name="quantity" value="{{$item->qty}}">
                                         </div>
                                     </td>
                                     <td>${{$item->price}}</td>
@@ -107,3 +107,44 @@
         </div>
     </div>
     @endsection
+{{--@section('script')--}}
+{{-- <script>--}}
+{{--     $(document).on('click','.qty-text', function (){--}}
+{{--         var id = $(this).data('id');--}}
+
+{{--         var spinner =$(this),input=spinner.closest("div.quantity").find('input[type="number"]');--}}
+
+{{--         // alert(input.val());--}}
+{{--       if (input.val()==1){--}}
+{{--           return false;--}}
+{{--       }--}}
+{{--       if (input.val()!=1){--}}
+{{--           var newVal = parseFloat(input.val());--}}
+{{--           $('#qty-input-+id').val(newVal);--}}
+{{--       }--}}
+
+{{--       var  productQuantity= $("#update-cart-"+id).data('product-quantity');--}}
+{{--       update_car(id,productQuantity)--}}
+{{--     });--}}
+{{--     function update_cart(id,productQuantity){--}}
+{{--         var rowId = id;--}}
+{{--         var product_qty= $('#qty-input-'+rowId).val();--}}
+{{--         var token="{{csrf_token()}}";--}}
+{{--         var path= "route('cart.update')";--}}
+
+{{--         $.ajax({--}}
+{{--             url:path,--}}
+{{--             type:"POST",--}}
+{{--             data:{--}}
+{{--                 _token:token,--}}
+{{--                 product_qty:product_qty,--}}
+{{--                 rowId:rowId,--}}
+{{--                 productQuantity:productQuantity,--}}
+{{--             },--}}
+{{--             success:function (data){--}}
+{{--                 console.log(data);--}}
+{{--             }--}}
+{{--         })--}}
+{{--     }--}}
+{{-- </script>--}}
+{{--    @endsection--}}

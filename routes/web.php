@@ -43,7 +43,11 @@ Route::prefix('admin')->group(function (){
 });
 
 
-Route::get('home/whishlist', [WhishlistController::class, 'index'])->name('whishlist');
+Route::get('whishlist/page', [WhishlistController::class, 'index'])->name('whishlist');
+Route::post('whishlist/store', [WhishlistController::class, 'whishlistStore'])->name('whishlist.store');
+Route::post('whishlist/move', [WhishlistController::class, 'moveToCart'])->name('whishlist.movetocart');
+
+
 Route::resource('coupon', CouponController::class)->only('index', 'create', 'store', 'show', 'edit', 'destroy');
 
 
@@ -52,6 +56,8 @@ Route::get('cart/dashboard', [CartController::class, 'dashboard'])->name('cart.d
 Route::get('cart/index', [CartController::class, 'index'])->name('cart.index');
 Route::post('cart/store',[CartController::class,'cartStore'])->name('cart.store');
 Route::post('cart/delete',[CartController::class,'cartDelete'])->name('cart.delete');
+Route::post('cart/update',[CartController::class,'cartUpdate'])->name('cart.update');
+
   Route::get('checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 Route::get('product-category/{slug}', [ProductCategoryController::class, 'getproductcategory'])->name('getproductcategory');
 Route::get('product-detail/{slug}', [ProductCategoryController::class, 'productDetail'])->name('productdetail');
