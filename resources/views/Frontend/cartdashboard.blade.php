@@ -35,6 +35,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach(\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->content() as $item)
                                 <tr>
                                     <th scope="row">
                                         <i class="icofont-close"></i>
@@ -43,88 +44,17 @@
                                         <img src="img/product-img/onsale-1.png" alt="Product">
                                     </td>
                                     <td>
-                                        <a href="#">Bluetooth Speaker</a>
+                                        <a href="#">{{$item->title}}</a>
                                     </td>
-                                    <td>$9</td>
+                                    <td>${{$item->price}}</td>
                                     <td>
                                         <div class="quantity">
-                                            <input type="number" class="qty-text" id="qty2" step="1" min="1" max="99" name="quantity" value="1">
+                                            <input type="number" class="qty-text" id="qty2" step="1" min="1" max="99" name="quantity" value="{{$item->qty}}">
                                         </div>
                                     </td>
-                                    <td>$9</td>
+                                    <td>${{$item->price}}</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <i class="icofont-close"></i>
-                                    </th>
-                                    <td>
-                                        <img src="img/product-img/onsale-2.png" alt="Product">
-                                    </td>
-                                    <td>
-                                        <a href="#">Roof Lamp</a>
-                                    </td>
-                                    <td>$11</td>
-                                    <td>
-                                        <div class="quantity">
-                                            <input type="number" class="qty-text" id="qty3" step="1" min="1" max="99" name="quantity" value="1">
-                                        </div>
-                                    </td>
-                                    <td>$11</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <i class="icofont-close"></i>
-                                    </th>
-                                    <td>
-                                        <img src="img/product-img/onsale-6.png" alt="Product">
-                                    </td>
-                                    <td>
-                                        <a href="#">Cotton T-shirt</a>
-                                    </td>
-                                    <td>$6</td>
-                                    <td>
-                                        <div class="quantity">
-                                            <input type="number" class="qty-text" id="qty4" step="1" min="1" max="99" name="quantity" value="1">
-                                        </div>
-                                    </td>
-                                    <td>$6</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <i class="icofont-close"></i>
-                                    </th>
-                                    <td>
-                                        <img src="img/product-img/onsale-4.png" alt="Product">
-                                    </td>
-                                    <td>
-                                        <a href="#">Water Bottle</a>
-                                    </td>
-                                    <td>$17</td>
-                                    <td>
-                                        <div class="quantity">
-                                            <input type="number" class="qty-text" id="qty5" step="1" min="1" max="99" name="quantity" value="1">
-                                        </div>
-                                    </td>
-                                    <td>$17</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <i class="icofont-close"></i>
-                                    </th>
-                                    <td>
-                                        <img src="img/product-img/onsale-5.png" alt="Product">
-                                    </td>
-                                    <td>
-                                        <a href="#">Alka Sliper</a>
-                                    </td>
-                                    <td>$13</td>
-                                    <td>
-                                        <div class="quantity">
-                                            <input type="number" class="qty-text" id="qty6" step="1" min="1" max="99" name="quantity" value="1">
-                                        </div>
-                                    </td>
-                                    <td>$13</td>
-                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -153,7 +83,7 @@
                                 <tbody>
                                 <tr>
                                     <td>Sub Total</td>
-                                    <td>$56.00</td>
+                                    <td{{(Cart::subtotal())}}</td>
                                 </tr>
                                 <tr>
                                     <td>Shipping</td>
@@ -165,7 +95,7 @@
                                 </tr>
                                 <tr>
                                     <td>Total</td>
-                                    <td>$71.60</td>
+                                    <td>${{(Cart::subtotal())}}</td>
                                 </tr>
                                 </tbody>
                             </table>
