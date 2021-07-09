@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhishlistController;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,12 @@ Route::post('whishlist/move', [WhishlistController::class, 'moveToCart'])->name(
 
 
 Route::resource('coupon', CouponController::class)->only('index', 'create', 'store', 'show', 'edit', 'destroy');
+Route::get('cart/coupon', [CartController::class, 'couponAdd'])->name('coupon.add');
+
+
+
+Route::resource('shipping', ShippingController::class)->only('index', 'create', 'store', 'show', 'edit', 'destroy');
+Route::get('shippping/index', [ShippingController::class, 'shippingPage'])->name('shippingpage');
 
 
 Route::get('cart/dashboard', [CartController::class, 'dashboard'])->name('cart.dashboard');
@@ -58,7 +65,15 @@ Route::post('cart/store',[CartController::class,'cartStore'])->name('cart.store'
 Route::post('cart/delete',[CartController::class,'cartDelete'])->name('cart.delete');
 Route::post('cart/update',[CartController::class,'cartUpdate'])->name('cart.update');
 
-  Route::get('checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+  Route::get('checkout/billing', [CheckoutController::class, 'checkoutBilling'])->name('checkoutbilling');
+Route::get('checkout/shipping', [CheckoutController::class, 'checkoutShipping'])->name('checkoutshipping');
+Route::get('checkout/payment', [CheckoutController::class, 'checkoutPayment'])->name('checkoutpayment');
+Route::get('checkout/review', [CheckoutController::class, 'checkoutReview'])->name('checkoutreview');
+Route::get('checkout/complete', [CheckoutController::class, 'checkoutComplete'])->name('checkoutcomplete');
+
+
+
+
 Route::get('product-category/{slug}', [ProductCategoryController::class, 'getproductcategory'])->name('getproductcategory');
 Route::get('product-detail/{slug}', [ProductCategoryController::class, 'productDetail'])->name('productdetail');
 

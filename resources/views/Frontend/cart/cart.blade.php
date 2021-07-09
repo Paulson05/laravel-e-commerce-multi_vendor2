@@ -35,7 +35,7 @@
         </div>
         <div class="cart-box">
             <button class="btn btn-success"><a href="{{route('cart.dashboard')}}">Cart</a></button>
-            <button class="btn btn-primary"><a href="{{route('checkout')}}">Checkout</a></button>
+            <button class="btn btn-primary"><a href="{{route('checkoutbilling')}}">Checkout</a></button>
 
 
         </div>

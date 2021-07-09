@@ -62,20 +62,7 @@ class BannerController extends Controller
         else{
             return redirect()->back();
         }
-//        if ( $request->hasfile('photo')){
-//            $file  =$request->file('photo');
-//            $extension = $file->getClientOriginalExtension();
-//            $filename =    time() . '.' .$extension;
-//            $file->move('upload/photos', $filename);
-//
-//        }
-//        else {
-//            $filename='';
-//        }
-//        $banner = Banner::create(collect($request->only(['title','slug','description','status','conditions']))->put('photo',$filename)->all());
-//        $banner->save();
-//
-//        return redirect()->back();
+
     }
 
     /**

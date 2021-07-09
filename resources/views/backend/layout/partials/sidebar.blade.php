@@ -46,6 +46,11 @@
                             <a href="{{route('coupon.index')}}" class="has-arrow"><i class="icon-basket"></i> <span>Coupon Management</span></a>
 
                         </li>
+                        <li>
+                            <a href="{{route('shipping.index')}}" class="has-arrow"><i class="icon-basket"></i> <span>Shipping Management</span></a>
+
+                        </li>
+
 
 
                     </ul>

@@ -50,6 +50,8 @@
                                     <td>
                                         <div class="quantity">
                                             <input type="number" class="qty-text" data-id="{{$item->rowId}}" id="qty-input-{{$item->rowId}}" step="1" min="1" max="99" name="quantity" value="{{$item->qty}}">
+                                            <input type="hidden"  data-id="{{$item->rowId}}"  data-product-quantity="{{$item->stock}}" id="update-cart-{{$item->rowId}}">
+
                                         </div>
                                     </td>
                                     <td>${{$item->price}}</td>
@@ -67,9 +69,10 @@
                         <p>Enter your coupon code here &amp; get awesome discounts!</p>
                         <!-- Form -->
                         <div class="coupon-form">
-                            <form action="#">
-                                <input type="text" class="form-control" placeholder="Enter Your Coupon Code">
-                                <button type="submit" class="btn btn-primary">Apply Coupon</button>
+                            <form action="{{route('coupon.add')}}" method="POST" id="coupon-form">
+                                $csrf
+                                <input type="text" class="form-control" name="code" placeholder="Enter Your Coupon Code">
+                                <button type="submit" class="coupon-btn btn btn-primary">Apply Coupon</button>
                             </form>
                         </div>
                     </div>
@@ -100,51 +103,65 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="checkout-1.html" class="btn btn-primary d-block">Proceed To Checkout</a>
+                        <a href="{{route('checkoutbilling')}}" class="btn btn-primary d-block">Proceed To Checkout</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     @endsection
-{{--@section('script')--}}
-{{-- <script>--}}
-{{--     $(document).on('click','.qty-text', function (){--}}
-{{--         var id = $(this).data('id');--}}
+@section('script')
+    <script>
+        $(document).on('click', '.coupon-btn', function (e){
+            e.preventDefault();
+            var code = $('input[name=code]').val();
+            $('.coupon-btn').html('<i class= "fa fa-spinner ta-spin"></i> applying...');
+            $('#coupon-form').submit();
+        })
+    </script>
+ <script>
+     $(document).on('click','.qty-text', function (){
+         var id = $(this).data('id');
 
-{{--         var spinner =$(this),input=spinner.closest("div.quantity").find('input[type="number"]');--}}
+         var spinner =$(this),input=spinner.closest("div.quantity").find('input[type="number"]');
 
-{{--         // alert(input.val());--}}
-{{--       if (input.val()==1){--}}
-{{--           return false;--}}
-{{--       }--}}
-{{--       if (input.val()!=1){--}}
-{{--           var newVal = parseFloat(input.val());--}}
-{{--           $('#qty-input-+id').val(newVal);--}}
-{{--       }--}}
+         // alert(input.val());
+         // alert(id);
+$
+         if (input.val()==1){
+           return false;
+       }
+       if (input.val()!=1){
+           var newVal = parseFloat(input.val());
+           $('#qty-input-'+id).val(newVal);
+       }
 
-{{--       var  productQuantity= $("#update-cart-"+id).data('product-quantity');--}}
-{{--       update_car(id,productQuantity)--}}
-{{--     });--}}
-{{--     function update_cart(id,productQuantity){--}}
-{{--         var rowId = id;--}}
-{{--         var product_qty= $('#qty-input-'+rowId).val();--}}
-{{--         var token="{{csrf_token()}}";--}}
-{{--         var path= "route('cart.update')";--}}
+       var  productQuantity= $("#update-cart-"+id).data('product-quantity');
+       alert(productQuantity);
+       update_car(id,productQuantity)
+     });
+     function update_cart(id,productQuantity){
+         var rowId = id;
+         var product_qty= $('#qty-input-'+rowId).val();
+         var token="{{csrf_token()}}";
+         var path= "route('cart.update')";
 
-{{--         $.ajax({--}}
-{{--             url:path,--}}
-{{--             type:"POST",--}}
-{{--             data:{--}}
-{{--                 _token:token,--}}
-{{--                 product_qty:product_qty,--}}
-{{--                 rowId:rowId,--}}
-{{--                 productQuantity:productQuantity,--}}
-{{--             },--}}
-{{--             success:function (data){--}}
-{{--                 console.log(data);--}}
-{{--             }--}}
-{{--         })--}}
-{{--     }--}}
-{{-- </script>--}}
-{{--    @endsection--}}
+         $.ajax({
+             url:path,
+             type:"POST",
+             data:{
+                 _token:token,
+                 product_qty:product_qty,
+                 rowId:rowId,
+                 productQuantity:productQuantity,
+             },
+             success:function (data){
+                 console.log(data);
+                 if (data['status']){
+
+                 }
+             }
+         })
+     }
+ </script>
+    @endsection

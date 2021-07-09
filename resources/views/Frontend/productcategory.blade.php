@@ -171,4 +171,55 @@
             });
         });
     </script>
+    <script>
+        $(document).on('click','.add_to_wishlist', function (e){
+            e.preventDefault();
+            var product_id=$(this).data('product-id');
+            var product_qty=$(this).data('quantity');
+
+            var token= "{{csrf_token()}}";
+            var path = "{{route('whishlist.store')}}";
+
+            $.ajax({
+                url:path,
+                type:"POST",
+                datatype:"JSON",
+                data:{
+                    product_id:product_id,
+                    product_qty:product_qty,
+                    _token:token,
+                },
+
+                beforeSend:function (){
+                    $('#add_to_wishlist'+product_id).html('<i class="fa fa-spinner fa-spin btn btn-secondary"></i>');
+                },
+                complete:function (){
+                    $('#add_to_wishlist_'+product_id).html('<i class="fa fa-heart btn btn-danger"></i> Added to cart');
+
+                },
+
+                success:function (data){
+                    // console.log(data);
+
+
+
+                    if (data['status']){
+                        $('body #nav-ajax').html(data['nav']);
+                        $('body #nav-counter').html(data['cart_counter']);
+                        swal({
+                            title: "Good job!",
+                            text: data['message'],
+                            icon: "success",
+                            button: "ok",
+                        });
+                    }
+
+                },
+                error:function (err){
+                    console.log(err);
+                }
+
+            });
+        });
+    </script>
 @endsection

@@ -49,7 +49,7 @@ $result = Cart::instance('shopping')->add($item->id, $item->name,1,$item->price)
         $response['cart_count']=Cart::instance('shopping')->count();
     }
     if($request->ajax()){
-        $whishlist= view();
+        $whishlist= view('Frontend.whishlist');
     }
 
     return json_encode($response);

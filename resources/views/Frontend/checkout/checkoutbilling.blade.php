@@ -1,12 +1,6 @@
 @extends('Frontend.template.default')
 @section('content')
-    <div class="checkout_steps_area">
-        <a class="complated" href="checkout-1.html"><i class="icofont-check-circled"></i> Login</a>
-        <a class="active" href="checkout-2.html"><i class="icofont-check-circled"></i> Billing</a>
-        <a href="checkout-3.html"><i class="icofont-check-circled"></i> Shipping</a>
-        <a href="checkout-4.html"><i class="icofont-check-circled"></i> Payment</a>
-        <a href="checkout-5.html"><i class="icofont-check-circled"></i> Review</a>
-    </div>
+   @include('Frontend.checkout.checkoutnavbar')
 
     <!-- Checkout Area -->
     <div class="checkout_area section_padding_100">
@@ -39,7 +33,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="country">Country</label>
-                                    <select class="custom-select d-block w-100 form-control" id="country">
+                                    <select class="custom-select  w-100 form-control" id="country">
                                         <option value="usa">United States</option>
                                         <option value="uk">United Kingdom</option>
                                         <option value="ger">Germany</option>
@@ -147,7 +141,7 @@
                 <div class="col-12">
                     <div class="checkout_pagination d-flex justify-content-end mt-50">
                         <a href="checkout-1.html" class="btn btn-primary mt-2 ml-2">Go Back</a>
-                        <a href="checkout-3.html" class="btn btn-primary mt-2 ml-2">Continue</a>
+                        <a href="{{route('shippingpage')}}" class="btn btn-primary mt-2 ml-2">Continue</a>
                     </div>
                 </div>
             </div>

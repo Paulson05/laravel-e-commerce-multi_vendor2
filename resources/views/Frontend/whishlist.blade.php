@@ -62,7 +62,7 @@
             e.preventDefault();
             var rowId= $($this).data('id');
             var token = "{{csrf_token()}}";
-            var path = "{{route()}}"
+            var path = "{{route('whishlist.movetocart')}}"
 
             $.ajax({
                 url:path,

@@ -17,7 +17,7 @@
 
                     <!-- Wishlist -->
                     <div class="product_wishlist">
-                        <a href="wishlist.html"><i class="icofont-heart"></i></a>
+                        <a href="javascript:void(0);" class="add_to_wishlist" data-quantity="1" data-id="{{$item->id}}" id="add_to_wishlist_{{$item->id}}"><i class="icofont-heart"></i></a>
                     </div>
 
                     <!-- Compare -->

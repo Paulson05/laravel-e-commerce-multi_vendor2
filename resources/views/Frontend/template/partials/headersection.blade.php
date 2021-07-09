@@ -46,7 +46,7 @@
 
                         <!-- Cart -->
 
-                    @include('Frontend.cart')
+                    @include('Frontend.cart.cart')
                     <!-- Account -->
 
                     </div>
