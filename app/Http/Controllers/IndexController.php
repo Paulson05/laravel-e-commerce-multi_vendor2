@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -15,7 +16,12 @@ class IndexController extends Controller
     }
 
     public function shop(){
-        return view('Frontend.shop');
+        $products = Product::where('status', 'active')->paginate(10);
+        $cats = Category::where(['status'=>'active', 'is_parent'=>1])->with('products')->orderBy('title','ASC')->get();
+        return view('Frontend.shop')->with([
+            'products' => $products,
+            'cats'=> $cats
+        ]);
     }
 
     public function auth(){

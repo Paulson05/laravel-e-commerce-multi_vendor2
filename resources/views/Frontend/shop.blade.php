@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <h5>Shop Grid</h5>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('homepage')}}">Home</a></li>
                         <li class="breadcrumb-item active">Shop Grid</li>
                     </ol>
                 </div>
@@ -27,30 +27,17 @@
                             <h6 class="widget-title">Product Categories</h6>
                             <div class="widget-desc">
                                 <!-- Single Checkbox -->
+                                @if(count($cats)>0)
+
+                                    @foreach($cats as $item)
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1">Men <span class="text-muted">(109)</span></label>
+                                    <label class="custom-control-label" for="customCheck1">{{$item->title}}<span class="text-muted">(109)</span></label>
                                 </div>
-                                <!-- Single Checkbox -->
-                                <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                    <label class="custom-control-label" for="customCheck2">Women <span class="text-muted">(67)</span></label>
-                                </div>
-                                <!-- Single Checkbox -->
-                                <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                    <label class="custom-control-label" for="customCheck3">Kids <span class="text-muted">(89)</span></label>
-                                </div>
-                                <!-- Single Checkbox -->
-                                <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                    <label class="custom-control-label" for="customCheck4">Accessories <span class="text-muted">(425)</span></label>
-                                </div>
-                                <!-- Single Checkbox -->
-                                <div class="custom-control custom-checkbox d-flex align-items-center">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck5">
-                                    <label class="custom-control-label" for="customCheck5">Fashion <span class="text-muted">(73)</span></label>
-                                </div>
+                                    @endforeach
+                                @else
+                                <p class="text-center">products categories not found</p>
+                                    @endif
                             </div>
                         </div>
 
@@ -188,356 +175,14 @@
 
                     <div class="shop_grid_product_area">
                         <div class="row justify-content-center">
+                            @if(count($products)>0)
                             <!-- Single Product -->
+                            @foreach($products as $item)
                             <div class="col-9 col-sm-12 col-md-6 col-lg-4">
                                 <div class="single-product-area mb-30">
                                     <div class="product_image">
                                         <!-- Product Image -->
-                                        <img class="normal_img" src="img/product-img/new-1-back.png" alt="">
-                                        <img class="hover_img" src="img/product-img/new-1.png" alt="">
-
-                                        <!-- Product Badge -->
-                                        <div class="product_badge">
-                                            <span>New</span>
-                                        </div>
-
-                                        <!-- Wishlist -->
-                                        <div class="product_wishlist">
-                                            <a href="wishlist.html"><i class="icofont-heart"></i></a>
-                                        </div>
-
-                                        <!-- Compare -->
-                                        <div class="product_compare">
-                                            <a href="compare.html"><i class="icofont-exchange"></i></a>
-                                        </div>
-                                    </div>
-
-                                    <!-- Product Description -->
-                                    <div class="product_description">
-                                        <!-- Add to cart -->
-                                        <div class="product_add_to_cart">
-                                            <a href="#"><i class="icofont-shopping-cart"></i> Add to Cart</a>
-                                        </div>
-
-                                        <!-- Quick View -->
-                                        <div class="product_quick_view">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="icofont-eye-alt"></i> Quick View</a>
-                                        </div>
-
-                                        <p class="brand_name">Top</p>
-                                        <a href="#">Boutique Silk Dress</a>
-                                        <h6 class="product-price">$48.99</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="col-9 col-sm-12 col-md-6 col-lg-4">
-                                <div class="single-product-area mb-30">
-                                    <div class="product_image">
-                                        <!-- Product Image -->
-                                        <img class="normal_img" src="img/product-img/new-2.png" alt="">
-                                        <img class="hover_img" src="img/product-img/new-2-back.png" alt="">
-
-                                        <!-- Product Badge -->
-                                        <div class="product_badge">
-                                            <span>New</span>
-                                        </div>
-
-                                        <!-- Wishlist -->
-                                        <div class="product_wishlist">
-                                            <a href="wishlist.html"><i class="icofont-heart"></i></a>
-                                        </div>
-
-                                        <!-- Compare -->
-                                        <div class="product_compare">
-                                            <a href="compare.html"><i class="icofont-exchange"></i></a>
-                                        </div>
-                                    </div>
-
-                                    <!-- Product Description -->
-                                    <div class="product_description">
-                                        <!-- Add to cart -->
-                                        <div class="product_add_to_cart">
-                                            <a href="#"><i class="icofont-shopping-cart"></i> Add to Cart</a>
-                                        </div>
-
-                                        <!-- Quick View -->
-                                        <div class="product_quick_view">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="icofont-eye-alt"></i> Quick View</a>
-                                        </div>
-
-                                        <p class="brand_name">Zara</p>
-                                        <a href="#">Flower Textured Dress</a>
-                                        <h6 class="product-price">$34 <span>$48</span></h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="col-9 col-sm-12 col-md-6 col-lg-4">
-                                <div class="single-product-area mb-30">
-                                    <div class="product_image">
-                                        <!-- Product Image -->
-                                        <img class="normal_img" src="img/product-img/new-3.png" alt="">
-                                        <img class="hover_img" src="img/product-img/new-3-back.png" alt="">
-
-                                        <!-- Product Badge -->
-                                        <div class="product_badge">
-                                            <span>New</span>
-                                        </div>
-
-                                        <!-- Wishlist -->
-                                        <div class="product_wishlist">
-                                            <a href="wishlist.html"><i class="icofont-heart"></i></a>
-                                        </div>
-
-                                        <!-- Compare -->
-                                        <div class="product_compare">
-                                            <a href="compare.html"><i class="icofont-exchange"></i></a>
-                                        </div>
-                                    </div>
-
-                                    <!-- Product Description -->
-                                    <div class="product_description">
-                                        <!-- Add to cart -->
-                                        <div class="product_add_to_cart">
-                                            <a href="#"><i class="icofont-shopping-cart"></i> Add to Cart</a>
-                                        </div>
-
-                                        <!-- Quick View -->
-                                        <div class="product_quick_view">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="icofont-eye-alt"></i> Quick View</a>
-                                        </div>
-
-                                        <p class="brand_name">Sarah</p>
-                                        <a href="#">Silk Dress</a>
-                                        <h6 class="product-price">$96</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="col-9 col-sm-12 col-md-6 col-lg-4">
-                                <div class="single-product-area mb-30">
-                                    <div class="product_image">
-                                        <!-- Product Image -->
-                                        <img class="normal_img" src="img/product-img/new-4-back.png" alt="">
-                                        <img class="hover_img" src="img/product-img/new-4.png" alt="">
-
-                                        <!-- Product Badge -->
-                                        <div class="product_badge">
-                                            <span>New</span>
-                                        </div>
-
-                                        <!-- Wishlist -->
-                                        <div class="product_wishlist">
-                                            <a href="wishlist.html"><i class="icofont-heart"></i></a>
-                                        </div>
-
-                                        <!-- Compare -->
-                                        <div class="product_compare">
-                                            <a href="compare.html"><i class="icofont-exchange"></i></a>
-                                        </div>
-                                    </div>
-
-                                    <!-- Product Description -->
-                                    <div class="product_description">
-                                        <!-- Add to cart -->
-                                        <div class="product_add_to_cart">
-                                            <a href="#"><i class="icofont-shopping-cart"></i> Add to Cart</a>
-                                        </div>
-
-                                        <!-- Quick View -->
-                                        <div class="product_quick_view">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="icofont-eye-alt"></i> Quick View</a>
-                                        </div>
-
-                                        <p class="brand_name">Havit</p>
-                                        <a href="#">Box Shape Dress</a>
-                                        <h6 class="product-price">$13 <span>$27</span></h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="col-9 col-sm-12 col-md-6 col-lg-4">
-                                <div class="single-product-area mb-30">
-                                    <div class="product_image">
-                                        <!-- Product Image -->
-                                        <img class="normal_img" src="img/product-img/new-5.png" alt="">
-                                        <img class="hover_img" src="img/product-img/new-5-back.png" alt="">
-
-                                        <!-- Product Badge -->
-                                        <div class="product_badge">
-                                            <span>New</span>
-                                        </div>
-
-                                        <!-- Wishlist -->
-                                        <div class="product_wishlist">
-                                            <a href="wishlist.html"><i class="icofont-heart"></i></a>
-                                        </div>
-
-                                        <!-- Compare -->
-                                        <div class="product_compare">
-                                            <a href="compare.html"><i class="icofont-exchange"></i></a>
-                                        </div>
-                                    </div>
-
-                                    <!-- Product Description -->
-                                    <div class="product_description">
-                                        <!-- Add to cart -->
-                                        <div class="product_add_to_cart">
-                                            <a href="#"><i class="icofont-shopping-cart"></i> Add to Cart</a>
-                                        </div>
-
-                                        <!-- Quick View -->
-                                        <div class="product_quick_view">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="icofont-eye-alt"></i> Quick View</a>
-                                        </div>
-
-                                        <p class="brand_name">Women</p>
-                                        <a href="#">Light Dress</a>
-                                        <h6 class="product-price">$7.99</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="col-9 col-sm-12 col-md-6 col-lg-4">
-                                <div class="single-product-area mb-30">
-                                    <div class="product_image">
-                                        <!-- Product Image -->
-                                        <img class="normal_img" src="img/product-img/new-6.png" alt="">
-                                        <img class="hover_img" src="img/product-img/new-6-back.png" alt="">
-
-                                        <!-- Product Badge -->
-                                        <div class="product_badge">
-                                            <span>New</span>
-                                        </div>
-
-                                        <!-- Wishlist -->
-                                        <div class="product_wishlist">
-                                            <a href="wishlist.html"><i class="icofont-heart"></i></a>
-                                        </div>
-
-                                        <!-- Compare -->
-                                        <div class="product_compare">
-                                            <a href="compare.html"><i class="icofont-exchange"></i></a>
-                                        </div>
-                                    </div>
-
-                                    <!-- Product Description -->
-                                    <div class="product_description">
-                                        <!-- Add to cart -->
-                                        <div class="product_add_to_cart">
-                                            <a href="#"><i class="icofont-shopping-cart"></i> Add to Cart</a>
-                                        </div>
-
-                                        <!-- Quick View -->
-                                        <div class="product_quick_view">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="icofont-eye-alt"></i> Quick View</a>
-                                        </div>
-
-                                        <p class="brand_name">Top</p>
-                                        <a href="#">Flower Textured Pants</a>
-                                        <h6 class="product-price">$39</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="col-9 col-sm-12 col-md-6 col-lg-4">
-                                <div class="single-product-area mb-30">
-                                    <div class="product_image">
-                                        <!-- Product Image -->
-                                        <img class="normal_img" src="img/product-img/new-7-back.png" alt="">
-                                        <img class="hover_img" src="img/product-img/new-7.png" alt="">
-
-                                        <!-- Product Badge -->
-                                        <div class="product_badge">
-                                            <span>New</span>
-                                        </div>
-
-                                        <!-- Wishlist -->
-                                        <div class="product_wishlist">
-                                            <a href="wishlist.html"><i class="icofont-heart"></i></a>
-                                        </div>
-
-                                        <!-- Compare -->
-                                        <div class="product_compare">
-                                            <a href="compare.html"><i class="icofont-exchange"></i></a>
-                                        </div>
-                                    </div>
-
-                                    <!-- Product Description -->
-                                    <div class="product_description">
-                                        <!-- Add to cart -->
-                                        <div class="product_add_to_cart">
-                                            <a href="#"><i class="icofont-shopping-cart"></i> Add to Cart</a>
-                                        </div>
-
-                                        <!-- Quick View -->
-                                        <div class="product_quick_view">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="icofont-eye-alt"></i> Quick View</a>
-                                        </div>
-
-                                        <p class="brand_name">Lim</p>
-                                        <a href="#">Fashion Dress</a>
-                                        <h6 class="product-price">$88</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="col-9 col-sm-12 col-md-6 col-lg-4">
-                                <div class="single-product-area mb-30">
-                                    <div class="product_image">
-                                        <!-- Product Image -->
-                                        <img class="normal_img" src="img/product-img/new-8.png" alt="">
-                                        <img class="hover_img" src="img/product-img/new-8-back.png" alt="">
-
-                                        <!-- Product Badge -->
-                                        <div class="product_badge">
-                                            <span>New</span>
-                                        </div>
-
-                                        <!-- Wishlist -->
-                                        <div class="product_wishlist">
-                                            <a href="wishlist.html"><i class="icofont-heart"></i></a>
-                                        </div>
-
-                                        <!-- Compare -->
-                                        <div class="product_compare">
-                                            <a href="compare.html"><i class="icofont-exchange"></i></a>
-                                        </div>
-                                    </div>
-
-                                    <!-- Product Description -->
-                                    <div class="product_description">
-                                        <!-- Add to cart -->
-                                        <div class="product_add_to_cart">
-                                            <a href="#"><i class="icofont-shopping-cart"></i> Add to Cart</a>
-                                        </div>
-
-                                        <!-- Quick View -->
-                                        <div class="product_quick_view">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="icofont-eye-alt"></i> Quick View</a>
-                                        </div>
-
-                                        <p class="brand_name">Silk</p>
-                                        <a href="#">Top's Short</a>
-                                        <h6 class="product-price">$32</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="col-9 col-sm-12 col-md-6 col-lg-4">
-                                <div class="single-product-area mb-30">
-                                    <div class="product_image">
-                                        <!-- Product Image -->
-                                        <img class="normal_img" src="img/product-img/new-9.png" alt="">
+                                        <img class="normal_img" src="{{$item->photo}}" alt="">
                                         <img class="hover_img" src="img/product-img/new-9-back.png" alt="">
 
                                         <!-- Product Badge -->
@@ -569,11 +214,17 @@
                                         </div>
 
                                         <p class="brand_name">Eye</p>
-                                        <a href="#">Filmy Sunglases</a>
-                                        <h6 class="product-price">$14</h6>
+                                        <a href="#">{{$item->title}}</a>
+                                        <h6 class="product-price">${{$item->price}}</h6>
                                     </div>
                                 </div>
                             </div>
+                                @endforeach
+                                @else
+
+                                <p class="container text-center">product not found</p>
+                            @endif
+
                         </div>
                     </div>
 
