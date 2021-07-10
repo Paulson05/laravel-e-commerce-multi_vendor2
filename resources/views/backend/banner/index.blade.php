@@ -2,7 +2,9 @@
 
 @section('title', '| index')
 @section('content')
-
+    <div id="main-content">
+        <div class="container-fluid">
+            @include('backend.layout.partials.blockheader')
 
  <div class="pt-5">
      <div class="container pt-5">
@@ -163,7 +165,8 @@
             </div>
         </div>
     </div>
-
+        </div>
+    </div>
 @endsection
 
 @section('script')

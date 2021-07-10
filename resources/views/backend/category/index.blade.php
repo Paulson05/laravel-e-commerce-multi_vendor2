@@ -3,10 +3,12 @@
 @section('title', '| category | index')
 @section('content')
 
+    <div id="main-content">
+        <div class="container-fluid">
+            @include('backend.layout.partials.blockheader')
 
-
-    <div class="pt-5">
-        <div class="container pt-5">
+    <div class="pt-1">
+        <div class="container ">
 
             <div class="row clearfix">
                 <div class="col-lg-12">
@@ -174,6 +176,8 @@
                 </form>
 
             </div>
+        </div>
+    </div>
         </div>
     </div>
 
