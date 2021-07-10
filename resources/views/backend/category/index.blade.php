@@ -37,6 +37,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @if(count($categories)>0)
                                 @foreach($categories as $category)
                                 <tr>
                                     <td>
@@ -85,6 +86,9 @@
                                     </td>
                                 </tr>
                                 @endforeach
+                                @else
+                                    <p class="container text-center">product  not found</p>
+                                @endif
                                 </tbody>
                             </table>
                         </div>

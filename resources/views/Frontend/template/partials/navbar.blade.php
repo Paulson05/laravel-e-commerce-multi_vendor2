@@ -1,13 +1,13 @@
 <div class="classynav">
     <ul>
-        <li><a href="#">Home</a>
+        <li><a href="{{route('homepage')}}">Home</a>
             <ul class="dropdown">
                 <li><a href="index-1.html">Home - 1</a></li>
                 <li><a href="index-2.html">Home - 2</a></li>
                 <li><a href="index-3.html">Home - 3</a></li>
             </ul>
         </li>
-        <li><a href="#">Shop</a>
+        <li><a href="{{route('shop')}}">Shop</a>
             <ul class="dropdown">
                 <li><a href="#">Shop Grid</a>
                     <ul class="dropdown">

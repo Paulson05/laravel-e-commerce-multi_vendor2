@@ -29,6 +29,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('user/auth', [IndexController::class, 'auth'])->name('user.auth');
 
 Route::get('/', [IndexController::class, 'home'])->name('homepage');
+Route::get('/home/shop', [IndexController::class, 'shop'])->name('shop');
+
+
 Auth::routes();
 Route::get('/admin',[AdminController::class, 'index'])->name('admin.dashboard');
 Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -13,6 +13,11 @@ class IndexController extends Controller
             'categories' => $categories
         ]);
     }
+
+    public function shop(){
+        return view('Frontend.shop');
+    }
+
     public function auth(){
         return view('Frontend.auth.auth');
     }

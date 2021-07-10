@@ -72,7 +72,7 @@
         </div>
     </div>
 </section>
-@section('script')
+@push('script')
     <script>
         $(document).on('click','.add_to_cart', function (e){
             e.preventDefault();
@@ -175,4 +175,4 @@
             });
         });
     </script>
-@endsection
+@endpush
