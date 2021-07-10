@@ -10,4 +10,8 @@ class Brand extends Model
     protected $guarded = [];
     protected $table = 'brands';
     use HasFactory;
+
+    public function products(){
+        return $this->hasMany('App\Models\Product', 'brand_id', 'id');
+    }
 }

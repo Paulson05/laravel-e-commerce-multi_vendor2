@@ -30,6 +30,8 @@ Route::get('user/auth', [IndexController::class, 'auth'])->name('user.auth');
 
 Route::get('/', [IndexController::class, 'home'])->name('homepage');
 Route::get('/home/shop', [IndexController::class, 'shop'])->name('shop');
+Route::post('shop-filter', [IndexController::class, 'shopFilter'])->name('shop.filter');
+
 
 
 Auth::routes();
