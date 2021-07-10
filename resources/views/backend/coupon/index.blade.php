@@ -105,20 +105,21 @@
 
                             <div class="col-12">
                                 <div class="form-group">
-                                    <select id="single-selection" name="status" class="col-12 form-control multiselect multiselect-custom">
-                                        <option value="">----------select status----------</option>
-                                        <option value="active" {{old('status')== 'active' ? 'selected' : ''}}>active</option>
-                                        <option value="inactive" {{old('status')== 'inactive' ? 'selected' : ''}}>inactive</option>
+                                    <select id="single-selection" name="type" class="col-12 form-control multiselect multiselect-custom">
+                                        <option value="">----------select type----------</option>
+                                        <option value="fixed" {{old('type')== 'fixed' ? 'selected' : ''}}>fixed</option>
+                                        <option value="percent" {{old('type')== 'percent' ? 'selected' : ''}}>percent</option>
                                     </select>
                                 </div>
                             </div>
-                    <div class="col-12">
+                           <div class="col-12">
                         <div class="form-group">
-                            <select id="single-selection" name="type" class="col-12 form-control multiselect multiselect-custom">
-                                <option value="">----------select type----------</option>
-                                <option value="fixed" {{old('type')== 'fixed' ? 'selected' : ''}}>fixed</option>
-                                <option value="percent" {{old('type')== 'percent' ? 'selected' : ''}}>percent</option>
+                            <select id="single-selection" name="status" class="col-12 form-control multiselect multiselect-custom">
+                                <option value="">----------select status----------</option>
+                                <option value="active" {{old('status')== 'active' ? 'selected' : ''}}>active</option>
+                                <option value="inactive" {{old('status')== 'inactive' ? 'selected' : ''}}>inactive</option>
                             </select>
+
 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save</button>
