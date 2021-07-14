@@ -19,33 +19,76 @@ class IndexController extends Controller
     public function shop( Request $request){
 
         $products = Product::query();
+
         if(!empty($_GET['category'])){
             $slugs=explode(',',$_GET['category']);
             $cat_ids= Category::select('id')->whereIn('slug',$slugs)->pluck('id')->toArray();
+            $products = $products->whereIn('cat_id', $cat_ids);
 
-            $products = $products->whereIn('cat_id', $cat_ids)->paginate(10);
+        }
+
+
+
+        if(!empty($_GET['sortBy'])){
+
+            if ($_GET['sortBy'] == 'priceASC'){
+                $products = $products->where(['status' => 'active'])->orderBy('offer_price', 'ASC')->paginate(10);
+
+            }
+            if ($_GET['sortBy'] =='priceDesc'){
+                $products = $products->where(['status' => 'active'])->orderBy('offer_price', 'DESC')->paginate(10);
+
+            }
+            if ($_GET['sortBy']=='DiscAsc'){
+                $products = $products->where(['status' => 'active'])->orderBy('price', 'ASC')->paginate(10);
+
+            }
+            if ($_GET['sortBy'] =='DiscDesc'){
+                $products = $products->where(['status' => 'active'])->orderBy('price', 'DESC')->paginate(10);
+
+            }
+            if ($_GET['sortBy'] =='titleAsc'){
+                $products = $products->where(['status' => 'active'])->orderBy('title', 'ASC')->paginate(10);
+
+            }
+            if ($_GET['sortBy'] =='titleDesc')
+            {
+                $products = $products->where(['status' => 'active'])->orderBy('title', 'DESC')->paginate(10);
+            }
+
+
+        }
+        if(!empty($_GET['price'])){
+            $price=  explode('_',$_GET['price']);
+            dd($price);
+            $price[0]= floor($price[0]);
+            $price[1]= ceil($price[1]);
+            $products->whereBetween('offer_price', $price);
 
         }
         else{
-            $products = Product::where('status', 'active')->paginate(10);
+            $products = $products->where('status','active')->paginate(10);
 
         }
 
 
+//        $products = $products->where('status','active')->paginate(10);
 
 
 
-//        $products = Product::where('status', 'active')->paginate(10);
         $cats = Category::where(['status'=>'active', 'is_parent'=>1])->with('products')->orderBy('title','ASC')->get();
-
+        $brands = Brand::where(['status'=> 'active'])->with('products')->get();
         return view('Frontend.shop')->with([
             'products' => $products,
             'cats'=> $cats,
+            'brands'=> $brands
         ]);
     }
 
     public function shopFilter(Request  $request){
+//         dd($request->all());
 
+        // CATEGORY FILTER
         $data = $request->all();
 
         $catUrl='';
@@ -59,7 +102,24 @@ class IndexController extends Controller
                 }
             }
         }
-        return \redirect()->route('shop', $catUrl);
+        // SORT FILTER
+        $sortByUrl = "";
+        if(!empty($data['sortBy'])){
+//            $sort = $_GET['sortBy'];
+            $sortByUrl .='&sortBy='.$data['sortBy'];
+
+        }
+        // price filter
+
+        $price_range_url= "";
+
+        if(!empty($data['price_range'])){
+            $price_range_url .= '$price='.$data['price_range'];
+
+        }
+
+
+        return \redirect()->route('shop', $catUrl.$sortByUrl.$price_range_url);
     }
     public function auth(){
         return view('Frontend.auth.auth');

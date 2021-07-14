@@ -12,6 +12,6 @@ class Brand extends Model
     use HasFactory;
 
     public function products(){
-        return $this->hasMany('App\Models\Product', 'brand_id', 'id');
+        return $this->hasMany('App\Models\Product');
     }
 }

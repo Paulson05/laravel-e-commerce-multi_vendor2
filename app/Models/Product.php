@@ -9,6 +9,9 @@ class Product extends Model
 {
     protected  $guarded = [];
     protected $table = 'products';
+
+
+
     use HasFactory;
 
     public function rel_prod(){

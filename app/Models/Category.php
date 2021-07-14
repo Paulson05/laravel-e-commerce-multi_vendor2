@@ -19,7 +19,7 @@ class Category extends Model
     }
 
     public function products(){
-           return $this->hasMany('App\Models\Product', 'cat_id', 'id');
+           return $this->hasMany('App\Models\Product', 'cat_id', 'id')->where('status', 'active');
     }
     public function brands(){
         return $this->hasMany('App\Models\Product', 'cat_id', 'id');
