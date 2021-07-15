@@ -32,6 +32,28 @@
 <!-- jQuery (Necessary for All JavaScript Plugins) -->
 @include('Frontend.template.partials.script')
 <script>
+$(document).ready(function () {
+   var path = "{{route('autosearch')}}";
+   $('#search_text').autocomplete()({
+       source:function (request, response) {
+           $.ajax({
+               url:path,
+               datatype:{
+                   term:request.term
+               },
+
+               success:function (data) {
+                   response(data);
+               }
+           });
+       },
+        minLength:1,
+    });
+});
+
+</script>
+
+<script>
     $(document).on('click','.cart_delete', function (e){
         e.preventDefault();
         var cart_id=$(this).data('id');

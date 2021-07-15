@@ -14,6 +14,8 @@
 <script src="{{asset('/js/jarallax-video.min.js')}}"></script>
 <script src="{{asset('/js/jquery.magnific-popup.min.js')}}"></script>
 <script src="{{asset('/js/jquery.nice-select.min.js')}}"></script>
+{{--<script src="{{'https://code.jquery.com/ui/1.12.1/jquery-ui.js'}}"></script>--}}
+<script src="{{asset('https://code.jquery.com/ui/1.12.1/jquery-ui.js')}}"></script>
 <script src="{{asset('/js/wow.min.js')}}"></script>
 <script src="{{asset('/js/default/active.js')}}"></script>
 @yield('script')

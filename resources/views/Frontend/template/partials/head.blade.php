@@ -8,8 +8,8 @@
 <title>e-commerce @yield('title')</title>
 
 <!-- Favicon  -->
-
+<link rel="stylesheet" href="{{asset('//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')}}}">
 <link rel="icon" href="{{asset('/img/core-img/favicon.ico')}}">
-
+{{--<link rel="stylesheet" href="{{'//code.jquery.com/ui/1.12.1/jquery-ui.js/themes/base/jquery-ui.css'}}">--}}
 <!-- Style CSS -->
 <link rel="stylesheet" href="{{asset('/css/style.css')}}">

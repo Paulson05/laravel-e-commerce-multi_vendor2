@@ -178,7 +178,7 @@
                                 <a href="#description" class="nav-link active" data-toggle="tab" role="tab">Description</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span class="text-muted">(3)</span></a>
+                                <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span class="text-muted">({{\App\Models\ProductReview::where('product_id',$product->id)->count()}})</span></a>
                             </li>
                             <li class="nav-item">
                                 <a href="#addi-info" class="nav-link" data-toggle="tab" role="tab">Additional Information</a>
@@ -198,66 +198,59 @@
 
                             <div role="tabpanel" class="tab-pane fade" id="reviews">
                                 <div class="reviews_area">
+                                    @php
+
+                                    $reviews = \App\Models\ProductReview::Where('product_id',$product->id)->latest()->get();
+                                    @endphp
                                     <ul>
                                         <li>
+                                            @forelse($reviews as $review)
                                             <div class="single_user_review mb-15">
                                                 <div class="review-rating">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <span>for Quality</span>
+                                                    @for($i=0; $i<5; $i++)
+
+                                                        @if($review->rate>$i)
+                                                              <i class="fa fa-star" aria-hidden="true"></i>
+                                                         @else
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                        @endif
+                                                    @endfor
+
+                                                    <span>{{$review->reason}}</span>
                                                 </div>
                                                 <div class="review-details">
-                                                    <p>by <a href="#">Designing World</a> on <span>12 Sep 2019</span></p>
+                                                    <p>by <a href="#">Designing World</a> on <span>{{\Carbon\Carbon::parse($review->created_at)->format('M d y')}}</span></p>
+                                                    <P>{{$review->review}}</P>
                                                 </div>
                                             </div>
-                                            <div class="single_user_review mb-15">
+                                            @empty
                                                 <div class="review-rating">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <span>for Design</span>
+                                                    <p>no product review</p>
+
                                                 </div>
-                                                <div class="review-details">
-                                                    <p>by <a href="#">Designing World</a> on <span>12 Sep 2019</span></p>
-                                                </div>
-                                            </div>
-                                            <div class="single_user_review">
-                                                <div class="review-rating">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <span>for Value</span>
-                                                </div>
-                                                <div class="review-details">
-                                                    <p>by <a href="#">Designing World</a> on <span>12 Sep 2019</span></p>
-                                                </div>
-                                            </div>
+                                            @endforelse
                                         </li>
                                     </ul>
                                 </div>
 
                                 <div class="submit_a_review_area mt-50">
                                     <h4>Submit A Review</h4>
-                                    <form action="#" method="post">
+
+                                    <form action="{{route('product.review', $product->slug)}}" method="post">
+                                        @csrf
                                         <div class="form-group">
                                             <span>Your Ratings</span>
                                             <div class="stars">
-                                                <input type="radio" name="star" class="star-1" id="star-1">
+                                                <input type="radio" name="rate" class="star-1" id="star-1" value="1">
                                                 <label class="star-1" for="star-1">1</label>
-                                                <input type="radio" name="star" class="star-2" id="star-2">
+                                                <input type="radio" name="rate" class="star-2" id="star-2" value="2">
                                                 <label class="star-2" for="star-2">2</label>
-                                                <input type="radio" name="star" class="star-3" id="star-3">
+                                                <input type="radio" name="rate" class="star-3" id="star-3" value="3">
                                                 <label class="star-3" for="star-3">3</label>
-                                                <input type="radio" name="star" class="star-4" id="star-4">
+                                                <input type="radio" name="rate" class="star-4" id="star-4" value="4">
                                                 <label class="star-4" for="star-4">4</label>
-                                                <input type="radio" name="star" class="star-5" id="star-5">
+                                                <input type="radio" name="rate" class="star-5" id="star-5" value="5">
                                                 <label class="star-5" for="star-5">5</label>
                                                 <span></span>
                                             </div>
@@ -266,22 +259,30 @@
                                             <label for="name">Nickname</label>
                                             <input type="email" class="form-control" id="name" placeholder="Nazrul">
                                         </div>
+
+                                            <input type="text" name="user_id" value="">
+                                            <input type="text" name="product_id" value="">
+
+
                                         <div class="form-group">
                                             <label for="options">Reason for your rating</label>
-                                            <select class="form-control small right py-0 w-100" id="options">
-                                                <option>Quality</option>
-                                                <option>Value</option>
-                                                <option>Design</option>
-                                                <option>Price</option>
-                                                <option>Others</option>
+                                            <select class="form-control small right py-0 w-100" id="options" name="reason">
+                                                <option value="quantity" {{old('reason') == 'quantity' ? 'selected' : ''}}>Quality</option>
+                                                <option value="value" {{old('reason') == 'value' ? 'selected' : ''}}>Value</option>
+                                                <option value="design" {{old('reason') == 'design' ? 'selected' : ''}}>Design</option>
+                                                <option value="price" {{old('reason') == 'price' ? 'selected' : ''}}>Price</option>
+                                                <option value="other" {{old('reason') == 'other' ? 'selected' : ''}}>Others</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="comments">Comments</label>
-                                            <textarea class="form-control" id="comments" rows="5" data-max-length="150"></textarea>
+                                            <textarea class="form-control" id="comments" rows="5" data-max-length="150" name="review"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit Review</button>
                                     </form>
+
+                                        <a href="{{route('user.auth')}}">click to login</a>
+
                                 </div>
                             </div>
 

@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhishlistController;
@@ -25,16 +26,17 @@ use Illuminate\Support\Facades\Route;
 //    ]);
 //});
 
-
+Auth::routes();
 Route::get('user/auth', [IndexController::class, 'auth'])->name('user.auth');
 
 Route::get('/', [IndexController::class, 'home'])->name('homepage');
 Route::get('/home/shop', [IndexController::class, 'shop'])->name('shop');
 Route::post('shop-filter', [IndexController::class, 'shopFilter'])->name('shop.filter');
+Route::get('/auto-search',[IndexController::class, 'autoSearch'])->name('autosearch');
+Route::get('/search',[IndexController::class, 'search'])->name('search');
 
+Route::post('product-review/{slug}', [ProductReviewController::class, 'productReview'])->name('product.review');
 
-
-Auth::routes();
 Route::get('/admin',[AdminController::class, 'index'])->name('admin.dashboard');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

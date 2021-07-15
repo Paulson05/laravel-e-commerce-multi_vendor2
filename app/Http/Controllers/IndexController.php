@@ -16,6 +16,36 @@ class IndexController extends Controller
         ]);
     }
 
+    public function autoSearch(Request $request){
+    $query = $request->get('term', '');
+    $products= Product::where('title', 'LIKE', '%' .$query . '%')->get();
+    foreach ($products as $product){
+        $data[]=array('value' => $product->title, 'id'=> $product->id);
+    }
+
+    if (count($data)){
+        return $data;
+    }
+    else{
+        return ['value'=> "no result found", 'id'=>''];
+    }
+
+    }
+    public  function search(Request  $request){
+        $query = $request->input('query');
+        $products= Product::where('title', 'LIKE', '%' .$query . '%')->orderBy('id', 'DESC')->paginate(10);
+
+        $cats = Category::where(['status'=>'active', 'is_parent'=>1])->with('products')->orderBy('title','ASC')->get();
+        $brands = Brand::where(['status'=> 'active'])->with('products')->get();
+
+
+        return view('Frontend.shop')->with([
+            'products' => $products,
+            'cats'=> $cats,
+            'brands'=> $brands
+        ]);
+    }
+
     public function shop( Request $request){
 
         $products = Product::query();
@@ -78,6 +108,8 @@ class IndexController extends Controller
 
         $cats = Category::where(['status'=>'active', 'is_parent'=>1])->with('products')->orderBy('title','ASC')->get();
         $brands = Brand::where(['status'=> 'active'])->with('products')->get();
+
+
         return view('Frontend.shop')->with([
             'products' => $products,
             'cats'=> $cats,

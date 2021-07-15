@@ -33,10 +33,12 @@
                         <div class="search-area">
                             <div class="search-btn"><i class="icofont-search"></i></div>
                             <!-- Form -->
-                            <div class="search-form">
-                                <input type="search" class="form-control" placeholder="Search">
-                                <input type="submit" class="d-none" value="Send">
+                            <form method="GET" action="{{route('search')}}">
+                            <div class="search-form d-flex">
+                                <input type="search" id="search_text" class="form-control" placeholder="Search Products">
+                                <button type="submit" class="btn btn-success m-2 text-sm-center" value="Send" >Search</button>
                             </div>
+                            </form>
                         </div>
 
                         <!-- Wishlist -->
