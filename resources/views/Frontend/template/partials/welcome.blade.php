@@ -6,7 +6,7 @@
                 <div class="row h-100 align-items-center">
                     <div class="col-7 col-md-8">
                         <div class="welcome_slide_text">
-                            <p data-animation="fadeInUp" data-delay="0">Special Offer</p>
+                            <p data-animation="fadeInUp" data-delay="0">Special Offer2</p>
                             <h2 data-animation="fadeInUp" data-delay="300ms">40% Off Today</h2>
                             <h4 data-animation="fadeInUp" data-delay="600ms">Only $78</h4>
                             <a href="#" class="btn btn-primary" data-animation="fadeInUp" data-delay="1s">Buy Now</a>
