@@ -39,30 +39,58 @@ class BannerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+//    public function store(Request $request)
+//    {
+//        $this->validate($request,[
+//            'title' => 'string|required',
+//            'slug'=> 'string|required',
+//            'description'=> 'string|nullable',
+//            'conditions'=>'nullable|in:banner, promo',
+//            'photo'=> 'required',
+//            'status'=>'nullable|in:active, inactive',
+//        ]);
+//        $data= $request->all();
+//        $slug=Str::slug($request->input('title'));
+//        $slug_count=Banner::where('slug', $slug)->count();
+//        if ($slug_count>0){
+//            $slug = time(). '_'.$slug;
+//        }
+//        $status=Banner::create($data);
+//        if ($status){
+//            return redirect()->route('banner.index');
+//        }
+//        else{
+//            return redirect()->back();
+//        }
+//
+//    }
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'title' => 'string|required',
-            'slug'=> 'string|required',
-            'description'=> 'string|nullable',
-            'conditions'=>'nullable|in:banner, promo',
-            'photo'=> 'required',
-            'status'=>'nullable|in:active, inactive',
-        ]);
-        $data= $request->all();
-        $slug=Str::slug($request->input('title'));
-        $slug_count=Banner::where('slug', $slug)->count();
-        if ($slug_count>0){
-            $slug = time(). '_'.$slug;
-        }
-        $status=Banner::create($data);
-        if ($status){
-            return redirect()->route('banner.index');
-        }
-        else{
-            return redirect()->back();
-        }
 
+        $this->validate($request,[
+            'title' => 'required',
+            'body'=>  'required',
+            'slug' => 'required',
+            'image' => 'required',
+            'category_id' => 'required'
+
+        ]);
+
+        if ( $request->hasfile('image')){
+            $file  =$request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename =    time() . '.' .$extension;
+            $file->move('upload/images', $filename);
+
+        }
+        else {
+            $filename='';
+        }
+        $post = Post::create(collect($request->only(['title','body','slug','category_id']))->put('image',$filename)->all());
+        $post->tags()->sync($request->name);
+        $post->save();
+
+        return redirect()->back();
     }
 
     /**
